@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M4ST — AI Automation & Agent Systems Developer</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  <!-- Decorative Glow Blobs -->
+  <div class="glow-sphere sphere-top"></div>
+  <div class="glow-sphere sphere-bottom"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span class="bracket">[</span> M4ST <span class="bracket">]</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#simulation" class="nav-link">System Simulation</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <a href="mailto:m4stanuj@gmail.com" class="btn btn-primary nav-cta">
+        <i data-lucide="mail"></i> Hire Me
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="status-indicator">
+          <span class="pulse-dot"></span> Available for Freelance AI Projects
+        </div>
+        <h1 class="hero-title">
+          I Build <span class="highlight">Autonomous AI Agent Systems</span>
+        </h1>
+        <p class="hero-subtitle">
+          Specializing in multi-agent orchestration, custom MCP server architecture, and semantic caching. Production-grade pipelines running locally on consumer hardware at ₹0/month API cost.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            View Projects <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="#simulation" class="btn btn-secondary">
+            Simulate System <i data-lucide="play"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">m4st@bareilly:~$ ./intro</span>
+        </div>
+        <div class="terminal-body" id="typing-terminal">
+          <p class="term-line"><span class="term-prompt">$</span> cat whoami.json</p>
+          <pre class="term-output">{
+  "name": "Anuj (M4ST)",
+  "role": "AI Developer & Orchestrator",
+  "base": "Uttar Pradesh, India",
+  "hardware": "RTX 2060 Super",
+  "mission": "Zero-cost local agentic infrastructure"
+}</pre>
+          <p class="term-line"><span class="term-prompt">$</span> inspect_stack --core</p>
+          <div class="tech-tags">
+            <span class="tech-tag tag-python">Python</span>
+            <span class="tech-tag tag-langgraph">LangGraph</span>
+            <span class="tech-tag tag-mcp">MCP Protocol</span>
+            <span class="tech-tag tag-chroma">ChromaDB</span>
+            <span class="tech-tag tag-n8n">n8n</span>
+            <span class="tech-tag tag-ollama">Ollama</span>
+          </div>
+          <p class="term-line cursor-line"><span class="term-prompt">$</span> <span class="cursor">|</span></p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Profile JSON Identity Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&lt;identity&gt;</span>
+        <h2>System Profile</h2>
+      </div>
+
+      <div class="profile-layout">
+        <!-- Interactive Tech Details Grid -->
+        <div class="profile-card">
+          <div class="card-header">
+            <i data-lucide="cpu" class="card-icon"></i>
+            <h3>Core Directives & Expertise</h3>
+          </div>
+          <div class="card-body">
+            <ul class="directives-list">
+              <li>
+                <div class="dir-num">01</div>
+                <div>
+                  <h4>Multi-Agent Orchestration</h4>
+                  <p>Building DAG-based task graphs using LangGraph and CrewAI to solve complex workflows sequentially or in parallel.</p>
+                </div>
+              </li>
+              <li>
+                <div class="dir-num">02</div>
+                <div>
+                  <h4>Model Context Protocol (MCP)</h4>
+                  <p>Built 21 custom MCP servers to plug proprietary system toolchains and local databases directly into AI coding workspaces.</p>
+                </div>
+              </li>
+              <li>
+                <div class="dir-num">03</div>
+                <div>
+                  <h4>Cost-Efficient Routing</h4>
+                  <p>Routing prompts dynamically across 11 LLM API providers on free-tier credits with smart, zero-cost fallback networks.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tech-grid-card">
+          <div class="card-header">
+            <i data-lucide="layers" class="card-icon"></i>
+            <h3>Tech Stack Integration</h3>
+          </div>
+          <div class="tech-categories">
+            <div class="tech-cat">
+              <h4>Orchestration & Frameworks</h4>
+              <div class="tags">
+                <span>LangChain</span>
+                <span>LangGraph</span>
+                <span>CrewAI</span>
+                <span>n8n</span>
+              </div>
+            </div>
+            <div class="tech-cat">
+              <h4>Inference & Storage</h4>
+              <div class="tags">
+                <span>Ollama</span>
+                <span>ChromaDB</span>
+                <span>SQLite</span>
+                <span>Llama.cpp</span>
+              </div>
+            </div>
+            <div class="tech-cat">
+              <h4>Automation & Tools</h4>
+              <div class="tags">
+                <span>Playwright</span>
+                <span>OSINT Tooling</span>
+                <span>Shodan API</span>
+                <span>Whisper STT</span>
+                <span>Kokoro TTS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&lt;deployed_projects&gt;</span>
+        <h2>Projects Showcase</h2>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-num">01</span>
+            <div class="project-links">
+              <a href="https://github.com/m4stanuj" target="_blank"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>MAST v1.0</h3>
+            <p class="project-desc">Autonomous AI agent stack integrating 21 MCP servers, 11 free LLM providers, and a 3-tier ChromaDB memory engine. Specially tuned to execute locally on consumer hardware like RTX 2060 Super at zero cost.</p>
+          </div>
+          <div class="project-footer">
+            <span>LangGraph</span>
+            <span>ChromaDB</span>
+            <span>Local LLM</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-num">02</span>
+            <div class="project-links">
+              <a href="https://github.com/m4stanuj" target="_blank"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>OpenWork</h3>
+            <p class="project-desc">Universal MCP workspace config plugging 16 system-level MCP servers directly into Cursor, VSCode, or Windsurf. Connects custom tools to your IDE in one configuration.</p>
+          </div>
+          <div class="project-footer">
+            <span>MCP Server</span>
+            <span>IDE Integration</span>
+            <span>JSON Config</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-num">03</span>
+            <div class="project-links">
+              <a href="https://github.com/m4stanuj" target="_blank"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>LeadSniper</h3>
+            <p class="project-desc">AI-powered outreach automation client. Extracts target leads from open source sources, scores them based on custom ideal customer profiles (ICP), and prepares personalized emails dynamically.</p>
+          </div>
+          <div class="project-footer">
+            <span>Web Scraping</span>
+            <span>LLM Routing</span>
+            <span>Outreach</span>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-num">04</span>
+            <div class="project-links">
+              <a href="https://github.com/m4stanuj" target="_blank"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>cai-osint</h3>
+            <p class="project-desc">Authorized OSINT and recon framework orchestrated by AI agents. Automates Nmap target sweeps, Shodan queries, and Nuclei vulnerability checks with guardrails to scan only authorized scopes.</p>
+          </div>
+          <div class="project-footer">
+            <span>OSINT</span>
+            <span>Nmap API</span>
+            <span>Security Automation</span>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-num">05</span>
+            <div class="project-links">
+              <a href="https://github.com/m4stanuj" target="_blank"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Semantic Cache Engine</h3>
+            <p class="project-desc">Vector-similarity caching layer using SQLite and local embedding models. Reduces redundant LLM API queries by 40-60%, dropping latencies and cutting costs.</p>
+          </div>
+          <div class="project-footer">
+            <span>Semantic Cache</span>
+            <span>Embeddings</span>
+            <span>SQLite</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Simulation Section -->
+  <section id="simulation" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&lt;interactive_simulation&gt;</span>
+        <h2>Live System Flow Simulation</h2>
+        <p class="section-desc">Click a query type to see how the MAST stack processes user requests dynamically and cost-efficiently.</p>
+      </div>
+
+      <div class="sim-layout">
+        <!-- Control buttons -->
+        <div class="sim-controls">
+          <button class="sim-btn active" data-query="outreach">
+            <i data-lucide="mail"></i> Lead Generation Task
+          </button>
+          <button class="sim-btn" data-query="mcp">
+            <i data-lucide="terminal"></i> Custom MCP Tool Call
+          </button>
+          <button class="sim-btn" data-query="cached">
+            <i data-lucide="zap"></i> Repeated API Query (Cached)
+          </button>
+          <button class="sim-btn" data-query="local">
+            <i data-lucide="hard-drive"></i> Local Fallback Execution
+          </button>
+        </div>
+
+        <!-- Visual representation of flow -->
+        <div class="sim-visual-container">
+          <div class="sim-canvas-box">
+            <!-- Node links using SVG -->
+            <svg class="sim-svg-connections" id="svg-connections">
+              <path id="path-input-cache" class="flow-path" d="" />
+              <path id="path-cache-router" class="flow-path" d="" />
+              <path id="path-router-agent" class="flow-path" d="" />
+              <path id="path-agent-mcp" class="flow-path" d="" />
+              <path id="path-agent-db" class="flow-path" d="" />
+            </svg>
+
+            <!-- Interactive nodes -->
+            <div class="sim-node" id="node-input" style="top: 50%; left: 8%;">
+              <div class="node-icon"><i data-lucide="user"></i></div>
+              <div class="node-label">User Query</div>
+            </div>
+
+            <div class="sim-node" id="node-cache" style="top: 50%; left: 30%;">
+              <div class="node-icon"><i data-lucide="database"></i></div>
+              <div class="node-label">Semantic Cache</div>
+              <div class="node-status" id="status-cache">IDLE</div>
+            </div>
+
+            <div class="sim-node" id="node-router" style="top: 25%; left: 52%;">
+              <div class="node-icon"><i data-lucide="shuffle"></i></div>
+              <div class="node-label">LLM Router</div>
+              <div class="node-status" id="status-router">IDLE</div>
+            </div>
+
+            <div class="sim-node" id="node-agent" style="top: 65%; left: 52%;">
+              <div class="node-icon"><i data-lucide="brain"></i></div>
+              <div class="node-label">LangGraph Swarm</div>
+              <div class="node-status" id="status-agent">IDLE</div>
+            </div>
+
+            <div class="sim-node" id="node-mcp" style="top: 40%; left: 82%;">
+              <div class="node-icon"><i data-lucide="server"></i></div>
+              <div class="node-label">21 MCP Servers</div>
+              <div class="node-status" id="status-mcp">IDLE</div>
+            </div>
+
+            <div class="sim-node" id="node-db" style="top: 75%; left: 82%;">
+              <div class="node-icon"><i data-lucide="milestone"></i></div>
+              <div class="node-label">ChromaDB Memory</div>
+              <div class="node-status" id="status-db">IDLE</div>
+            </div>
+          </div>
+
+          <!-- Console logging updates -->
+          <div class="sim-console">
+            <div class="console-head">
+              <span class="dot"></span> Log Output
+            </div>
+            <div class="console-body" id="sim-log">
+              <p class="log-line">[SYSTEM] Ready for simulation. Select a task above.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&lt;execute_contact_protocol&gt;</span>
+        <h2>Start Communcation</h2>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-info">
+          <h3>Need to Build Autonomous Workflows?</h3>
+          <p>
+            I specialize in setting up self-hosted, offline agent networks, building custom MCP connections for engineering teams, and optimizing API costs down to absolute zero.
+          </p>
+          <div class="contact-details">
+            <div class="c-detail">
+              <i data-lucide="map-pin"></i>
+              <span>Bareilly, Uttar Pradesh, India</span>
+            </div>
+            <div class="c-detail">
+              <i data-lucide="mail"></i>
+              <span>m4stanuj@gmail.com</span>
+            </div>
+            <div class="c-detail">
+              <i data-lucide="github"></i>
+              <span>github.com/m4stanuj</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-cta-box">
+          <h4>Drop me an email directly</h4>
+          <p>I usually respond within 12 hours. Let's build something robust.</p>
+          <a href="mailto:m4stanuj@gmail.com" class="btn btn-primary cta-large">
+            <i data-lucide="mail"></i> INITIATE COMMS
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>&copy; 2026 M4ST. Crafted with speed, precision, and zero-cost local architecture.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
