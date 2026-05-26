@@ -3,14 +3,25 @@ lucide.createIcons();
 
 // Recalculate Node Connections (Draw SVG Paths between nodes)
 function drawConnections() {
-  const containerRect = document.querySelector('.sim-canvas-box').getBoundingClientRect();
+  const container = document.querySelector('.sim-canvas-box');
+  if (!container) return;
+  const containerRect = container.getBoundingClientRect();
 
-  const inputNode = document.getElementById('node-input').getBoundingClientRect();
-  const cacheNode = document.getElementById('node-cache').getBoundingClientRect();
-  const routerNode = document.getElementById('node-router').getBoundingClientRect();
-  const agentNode = document.getElementById('node-agent').getBoundingClientRect();
-  const mcpNode = document.getElementById('node-mcp').getBoundingClientRect();
-  const dbNode = document.getElementById('node-db').getBoundingClientRect();
+  const elInput = document.getElementById('node-input');
+  const elCache = document.getElementById('node-cache');
+  const elRouter = document.getElementById('node-router');
+  const elAgent = document.getElementById('node-agent');
+  const elMcp = document.getElementById('node-mcp');
+  const elDb = document.getElementById('node-db');
+
+  if (!elInput || !elCache || !elRouter || !elAgent || !elMcp || !elDb) return;
+
+  const inputNode = elInput.getBoundingClientRect();
+  const cacheNode = elCache.getBoundingClientRect();
+  const routerNode = elRouter.getBoundingClientRect();
+  const agentNode = elAgent.getBoundingClientRect();
+  const mcpNode = elMcp.getBoundingClientRect();
+  const dbNode = elDb.getBoundingClientRect();
 
   function getCenter(rect) {
     return {
@@ -32,11 +43,17 @@ function drawConnections() {
     return `M ${from.x} ${from.y} C ${from.x + dx/2} ${from.y}, ${to.x - dx/2} ${to.y}, ${to.x} ${to.y}`;
   }
 
-  document.getElementById('path-input-cache').setAttribute('d', getBezierPath(pInput, pCache));
-  document.getElementById('path-cache-router').setAttribute('d', getBezierPath(pCache, pRouter));
-  document.getElementById('path-router-agent').setAttribute('d', getBezierPath(pRouter, pAgent));
-  document.getElementById('path-agent-mcp').setAttribute('d', getBezierPath(pAgent, pMcp));
-  document.getElementById('path-agent-db').setAttribute('d', getBezierPath(pAgent, pDb));
+  const pathInputCache = document.getElementById('path-input-cache');
+  const pathCacheRouter = document.getElementById('path-cache-router');
+  const pathRouterAgent = document.getElementById('path-router-agent');
+  const pathAgentMcp = document.getElementById('path-agent-mcp');
+  const pathAgentDb = document.getElementById('path-agent-db');
+
+  if (pathInputCache) pathInputCache.setAttribute('d', getBezierPath(pInput, pCache));
+  if (pathCacheRouter) pathCacheRouter.setAttribute('d', getBezierPath(pCache, pRouter));
+  if (pathRouterAgent) pathRouterAgent.setAttribute('d', getBezierPath(pRouter, pAgent));
+  if (pathAgentMcp) pathAgentMcp.setAttribute('d', getBezierPath(pAgent, pMcp));
+  if (pathAgentDb) pathAgentDb.setAttribute('d', getBezierPath(pAgent, pDb));
 }
 
 // Initial draw and window resize handling
@@ -278,3 +295,107 @@ simButtons.forEach(btn => {
     isRunning = false;
   });
 });
+
+// --- Premium Hero Terminal Typing Effect ---
+document.addEventListener('DOMContentLoaded', () => {
+  const terminal = document.getElementById('typing-terminal');
+  if (!terminal) return;
+
+  // Save the original structured HTML content
+  const originalHTML = terminal.innerHTML;
+  
+  // Clear for typing simulation
+  terminal.innerHTML = '';
+
+  const lines = [
+    { type: 'command', text: 'cat whoami.json' },
+    { type: 'output', text: `{\n  "name": "Anuj (M4ST)",\n  "role": "AI Developer & Orchestrator",\n  "base": "Uttar Pradesh, India",\n  "hardware": "RTX 2060 Super",\n  "mission": "Zero-cost local agentic infrastructure"\n}` },
+    { type: 'command', text: 'inspect_stack --core' },
+    { type: 'tags', html: `
+      <div class="tech-tags" style="opacity: 0; transition: opacity 0.5s ease;">
+        <span class="tech-tag tag-python">Python</span>
+        <span class="tech-tag tag-langgraph">LangGraph</span>
+        <span class="tech-tag tag-mcp">MCP Protocol</span>
+        <span class="tech-tag tag-chroma">ChromaDB</span>
+        <span class="tech-tag tag-n8n">n8n</span>
+        <span class="tech-tag tag-ollama">Ollama</span>
+      </div>
+    `},
+    { type: 'prompt', text: '' }
+  ];
+
+  let currentLineIndex = 0;
+
+  function typeNextLine() {
+    if (currentLineIndex >= lines.length) {
+      // Re-apply original HTML to ensure classes, event handlers, and exact styles match 100% after animation
+      setTimeout(() => {
+        terminal.innerHTML = originalHTML;
+      }, 500);
+      return;
+    }
+
+    const lineData = lines[currentLineIndex];
+
+    if (lineData.type === 'command') {
+      const p = document.createElement('p');
+      p.className = 'term-line';
+      p.innerHTML = `<span class="term-prompt">$ </span><span class="typing-text"></span>`;
+      terminal.appendChild(p);
+      const textSpan = p.querySelector('.typing-text');
+      
+      let charIndex = 0;
+      const typeChar = () => {
+        if (charIndex < lineData.text.length) {
+          textSpan.textContent += lineData.text[charIndex];
+          charIndex++;
+          setTimeout(typeChar, 60);
+        } else {
+          currentLineIndex++;
+          setTimeout(typeNextLine, 500);
+        }
+      };
+      typeChar();
+
+    } else if (lineData.type === 'output') {
+      const pre = document.createElement('pre');
+      pre.className = 'term-output';
+      pre.style.opacity = '0';
+      pre.style.transition = 'opacity 0.4s ease';
+      pre.textContent = lineData.text;
+      terminal.appendChild(pre);
+      
+      // Force layout reflow then fade in
+      pre.getBoundingClientRect();
+      pre.style.opacity = '1';
+      
+      currentLineIndex++;
+      setTimeout(typeNextLine, 600);
+
+    } else if (lineData.type === 'tags') {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = lineData.html;
+      const tagsContainer = tempDiv.firstElementChild;
+      terminal.appendChild(tagsContainer);
+      
+      // Force layout reflow then fade in
+      tagsContainer.getBoundingClientRect();
+      tagsContainer.style.opacity = '1';
+      
+      currentLineIndex++;
+      setTimeout(typeNextLine, 800);
+
+    } else if (lineData.type === 'prompt') {
+      const p = document.createElement('p');
+      p.className = 'term-line cursor-line';
+      p.innerHTML = `<span class="term-prompt">$ </span><span class="cursor">|</span>`;
+      terminal.appendChild(p);
+      currentLineIndex++;
+      typeNextLine();
+    }
+  }
+
+  // Start typing after a short delay
+  setTimeout(typeNextLine, 1000);
+});
+
