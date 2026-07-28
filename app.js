@@ -399,3 +399,68 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(typeNextLine, 1000);
 });
 
+// ─── Scroll Reveal ────────────────────────────────────────────
+document.querySelectorAll('.section, .project-card, .profile-card, .tech-grid-card, .stats-strip').forEach(el => {
+  el.classList.add('reveal');
+});
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      // Stagger delay for sibling cards
+      const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+      let delay = 0;
+      siblings.forEach((sib, idx) => { if (sib === entry.target) delay = idx * 80; });
+      setTimeout(() => entry.target.classList.add('visible'), delay);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── Active Nav Link on Scroll ────────────────────────────────
+const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+const sections = document.querySelectorAll('section[id], header[id]');
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${entry.target.id}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(s => navObserver.observe(s));
+
+// ─── Stat Count-Up Animation ──────────────────────────────────
+function animateCount(el) {
+  const target = parseInt(el.textContent.replace(/[^\d]/g, ''));
+  if (isNaN(target) || target === 0) return;
+  const prefix = el.textContent.replace(/[\d]/g, '').replace(target.toString().split('').map(() => '').join(''), '');
+  let current = 0;
+  const duration = 1200;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current) + (el.dataset.suffix || '');
+    if (current >= target) clearInterval(timer);
+  }, 16);
+}
+
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.stat-num').forEach(animateCount);
+      statObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+const statsStrip = document.querySelector('.stats-strip');
+if (statsStrip) statObserver.observe(statsStrip);
