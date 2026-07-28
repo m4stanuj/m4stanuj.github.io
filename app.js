@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const lines = [
     { type: 'command', text: 'cat whoami.json' },
-    { type: 'output', text: `{\n  "name": "Anuj (M4ST)",\n  "role": "AI Developer & Orchestrator",\n  "base": "Uttar Pradesh, India",\n  "hardware": "Low VRAM compatible — 4-8GB GPU",\n  "mission": "Zero-cost local agentic infrastructure"\n}` },
+    { type: 'output', text: `{\n  "name": "Anuj (M4ST)",\n  "role": "AI Developer & Orchestrator",\n  "base": "India — Remote Available",\n  "hardware": "Low VRAM compatible — 4-8GB GPU",\n  "mission": "Zero-cost local agentic infrastructure"\n}` },
     { type: 'command', text: 'inspect_stack --core' },
     { type: 'tags', html: `
       <div class="tech-tags" style="opacity: 0; transition: opacity 0.5s ease;">
