@@ -10,6 +10,10 @@
   <link rel="canonical" href="https://m4st.vercel.app/">
   <link rel="author" href="https://github.com/m4stanuj">
   <meta name="theme-color" content="#00ff9d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="M4ST">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2307090e'/><text y='.9em' font-size='80' x='10' fill='%2300ff9d' font-family='monospace' font-weight='bold'>M</text></svg>">
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2307090e'/><text y='.9em' font-size='80' x='10' fill='%2300ff9d' font-family='monospace' font-weight='bold'>M</text></svg>">
   <!-- Font preload for LCP -->
@@ -35,12 +39,20 @@
     "@type": "Person",
     "name": "Anuj",
     "alternateName": "M4ST",
-    "jobTitle": "AI Systems Engineer & Solo Architect",
+    "jobTitle": "AI Systems Engineer & Multi-Agent Architect",
     "url": "https://m4st.vercel.app/",
     "email": "m4stanuj@gmail.com",
+    "image": "https://m4st.vercel.app/og-m4st.png",
+    "description": "Solo builder of autonomous AI agent systems with 21 MCP servers, semantic caching and zero-cost LLM orchestration. Available for freelance AI work worldwide.",
     "address": {"@type": "PostalAddress", "addressLocality": "Bareilly", "addressRegion": "Uttar Pradesh", "addressCountry": "IN"},
     "sameAs": ["https://github.com/m4stanuj", "https://linkedin.com/in/mast-anuj", "https://x.com/m4stanuj"],
-    "knowsAbout": ["Multi-Agent Systems", "MCP Protocol", "CrewAI", "LangGraph", "AI Orchestration", "Semantic Memory", "Cybersecurity", "OSINT"]
+    "knowsAbout": ["Multi-Agent Systems", "MCP Protocol", "CrewAI", "LangGraph", "AI Orchestration", "Semantic Memory", "Cybersecurity", "OSINT", "Python", "LangChain"],
+    "offers": {
+      "@type": "Offer",
+      "itemOffered": {"@type": "Service", "name": "AI Agent Systems Development & Freelance"},
+      "availability": "https://schema.org/InStock",
+      "areaServed": "Worldwide"
+    }
   }
   </script>
   <!-- Google Fonts -->
@@ -48,7 +60,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <!-- Lucide Icons — pinned version via jsDelivr (fast global CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.525.0/dist/umd/lucide.min.js" defer></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="dark-theme">
@@ -543,5 +556,8 @@
   </footer>
 
   <script src="app.js"></script>
+  <!-- Vercel Web Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
