@@ -260,7 +260,7 @@ const sequences = {
 
     nodes.agent.classList.add('processing');
     statuses.agent.textContent = 'OLLAMA';
-    writeLog("Executing task on consumer RTX 2060 Super using llama.cpp engine.", "info");
+    writeLog("Executing task on local inference engine via llama.cpp (Low VRAM optimised — 4-8GB GPU ready).", "info");
     await delay(2000);
 
     paths.agentDb.className.baseVal = 'flow-path active';
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const lines = [
     { type: 'command', text: 'cat whoami.json' },
-    { type: 'output', text: `{\n  "name": "Anuj (M4ST)",\n  "role": "AI Developer & Orchestrator",\n  "base": "Uttar Pradesh, India",\n  "hardware": "RTX 2060 Super",\n  "mission": "Zero-cost local agentic infrastructure"\n}` },
+    { type: 'output', text: `{\n  "name": "Anuj (M4ST)",\n  "role": "AI Developer & Orchestrator",\n  "base": "Uttar Pradesh, India",\n  "hardware": "Low VRAM compatible — 4-8GB GPU",\n  "mission": "Zero-cost local agentic infrastructure"\n}` },
     { type: 'command', text: 'inspect_stack --core' },
     { type: 'tags', html: `
       <div class="tech-tags" style="opacity: 0; transition: opacity 0.5s ease;">
