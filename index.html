@@ -8,6 +8,7 @@
 <meta name="keywords" content="M4ST, Anuj, autonomous agents, multi-agent systems, MCP, CrewAI, Bareilly, AI, zero-cost inference">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="M4ST">
 <meta name="format-detection" content="telephone=no">
 <title>M4ST — Anuj Builds Autonomous Agent Systems</title>
 <meta name="description" content="M4ST: local-first, zero-cost multi-agent AI operator systems by Anuj. Bareilly, India.">
@@ -205,6 +206,7 @@ footer{padding:48px 0; text-align:center; font-size:13px; font-family:'JetBrains
 #canvas-placeholder.loaded{opacity:0;pointer-events:none;}
 .canvas-loader{width:48px;height:48px;border:3px solid rgba(255,255,255,0.15);border-top-color:var(--violet);border-radius:50%;animation:spin 1s linear infinite;}
 @media(prefers-reduced-motion:reduce){.canvas-loader{animation:none;}}
+
 /* accessibility: visible focus + skip link */
 a:focus-visible, button:focus-visible{outline:3px solid var(--magenta); outline-offset:3px; border-radius:4px;}
 .skip-link{position:absolute; left:-999px; top:auto; z-index:200; background:var(--paper); color:var(--ink); padding:12px 20px; font-family:'JetBrains Mono'; font-size:13px; font-weight:700; border-radius:8px;}
@@ -266,7 +268,7 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--magenta); outline-
       <div class="line">M4ST terminal v1.0 — type <b>help</b> to see what this does.</div>
     </div>
     <div class="term-inputrow">
-      <span class="prompt">&gt;</span>
+      <span class="prompt">></span>
       <input id="termInput" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
     </div>
   </div>
@@ -419,7 +421,47 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--magenta); outline-
   </div>
 </section>
 
-<footer>© 2026 M4ST — built by Anuj, Bareilly, India. Zero-cost, always.</footer>
+<!-- M4ST Cross-Links Footer -->
+<footer class="m4st-cross-links" style="
+  background: var(--ink, #0D0B14); 
+  color: var(--paper, #FFFCF7); 
+  padding: 32px 0; 
+  text-align: center; 
+  font-family: 'JetBrains Mono', monospace; 
+  font-size: 12px; 
+  font-weight: 600;
+  border-top: 2px solid var(--ink, #0D0B14);
+  margin-top: 60px;
+">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 32px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; margin-bottom: 16px;">
+      <a href="https://m4st.vercel.app/" style="color: var(--lime, #CFFF3D); text-decoration: none; transition: color .2s;">M4ST</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-anuj-site.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Anuj Site</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-luxury.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Luxury</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://m4st-premium.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Premium</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://m4st-v1.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">V1</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-glass.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Glass</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-brutal.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Brutal</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-vhs.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">VHS</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-manga.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Manga</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-casefile.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Casefile</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-arcade.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Arcade</a>
+      <span style="color: var(--ink, #0D0B14);">|</span>
+      <a href="https://mast-agent.vercel.app/" style="color: var(--paper, #FFFCF7); text-decoration: none; transition: color .2s;">Agent</a>
+    </div>
+    <p style="margin: 0; opacity: 0.6;">© 2026 M4ST — Built by Anuj, Bareilly, India. Zero-cost, always.</p>
+  </div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -487,7 +529,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   function printLine(text, isPrompt){
     const div = document.createElement('div');
     div.className = 'line';
-    if(isPrompt){ div.innerHTML = '<span class="prompt">&gt;</span> ' + text; }
+    if(isPrompt){ div.innerHTML = '<span class="prompt">></span> ' + text; }
     else{ div.textContent = text; }
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
@@ -630,5 +672,9 @@ requestAnimationFrame(()=>{requestAnimationFrame(()=>{document.getElementById('c
   sections.forEach(s=>obs.observe(s));
 })();
 </script>
+
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
