@@ -215,16 +215,78 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
 
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#070116}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--pink),var(--cyan));border-radius:5px;box-shadow:0 0 10px rgba(255,42,109,.5)}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--cyan),var(--pink))}
+
+/* ---------- SCROLL PROGRESS ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:120;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--lime));box-shadow:0 0 12px rgba(5,217,232,.8)}
+
+/* ---------- BACK TO TOP ---------- */
+#totop{position:fixed;right:22px;bottom:22px;width:44px;height:44px;z-index:110;display:flex;align-items:center;justify-content:center;border:1px solid var(--cyan);color:var(--cyan);background:rgba(8,2,24,.85);border-radius:50%;font-size:15px;text-decoration:none;opacity:0;transform:translateY(14px);pointer-events:none;transition:.3s;backdrop-filter:blur(6px)}
+#totop.show{opacity:1;transform:none;pointer-events:auto}
+#totop:hover{box-shadow:0 0 20px rgba(5,217,232,.6);text-shadow:0 0 10px var(--cyan)}
+
+/* ---------- SIDE RAIL ---------- */
+#rail{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:14px}
+#rail a{color:var(--muted);text-decoration:none;font-size:10.5px;letter-spacing:.1em;font-family:'Orbitron',sans-serif;position:relative;transition:.2s;opacity:.55}
+#rail a::before{content:"";position:absolute;left:-10px;top:50%;transform:translateY(-50%);width:18px;height:1px;background:var(--cyan);opacity:0;transition:.2s}
+#rail a.on{color:var(--lime);opacity:1;text-shadow:0 0 10px rgba(215,255,62,.6)}
+#rail a.on::before{opacity:1;box-shadow:0 0 8px var(--cyan)}
+
+/* ---------- BOOT SCREEN ---------- */
+#boot{position:fixed;inset:0;z-index:200;background:#070116;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease}
+#boot.off{opacity:0;pointer-events:none}
+.boot-inner{text-align:center;width:300px}
+.boot-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:34px;letter-spacing:.16em;color:#fff;text-shadow:0 0 14px var(--cyan),0 0 40px rgba(5,217,232,.5);margin-bottom:26px}
+.boot-logo span{color:var(--pink);text-shadow:0 0 14px var(--pink)}
+.boot-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.07);border:1px solid rgba(5,217,232,.3);overflow:hidden}
+.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));box-shadow:0 0 12px rgba(5,217,232,.8)}
+.boot-txt{margin-top:14px;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- TYPING ---------- */
+.typed-line{margin-top:12px;min-height:22px;font-size:13.5px;color:var(--cyan);letter-spacing:.05em;text-shadow:0 0 10px rgba(5,217,232,.5)}
+.caret{display:inline-block;width:2px;height:15px;background:var(--cyan);margin-left:3px;vertical-align:-2px;animation:blink 1s steps(1) infinite;box-shadow:0 0 8px var(--cyan)}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- TERMINAL ---------- */
+.term{margin-top:22px;border:1px solid var(--line);border-radius:10px;background:rgba(3,1,12,.85);backdrop-filter:blur(8px);overflow:hidden;box-shadow:0 0 30px rgba(5,217,232,.08)}
+.term-head{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);background:rgba(12,4,36,.6)}
+.tdot{width:10px;height:10px;border-radius:50%}
+.tdot.r{background:#ff5f57}.tdot.y{background:#febc2e}.tdot.g{background:#28c840}
+.term-title{margin-left:8px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.term-body{padding:14px 16px;font-size:12px;line-height:1.85;min-height:120px}
+.term-body p{white-space:pre-wrap}
+.tk{color:var(--purple)}
+.tc{color:var(--cyan)}
+.term-body .ok{color:var(--lime)}
+
+/* active nav */
+.hnav a.on{color:var(--lime);text-shadow:0 0 10px var(--lime)}
+
 @media(max-width:640px){
   .hdr{flex-direction:column;gap:12px}
   .meta{position:static;transform:none;margin-top:18px;justify-content:center}
+  #rail{display:none}
+  #totop{right:14px;bottom:14px}
 }
 </style>
 </head>
 <body>
+<div id="boot"><div class="boot-inner">
+  <div class="boot-logo">M4ST<span>//SW</span></div>
+  <div class="boot-bar"><i></i></div>
+  <div class="boot-txt" id="bootTxt">BOOTING GRID</div>
+</div></div>
+<div id="progress"></div>
 <canvas id="stars"></canvas>
 <div class="sky"><div class="sunglow"></div><div class="sunwrap"><div class="sun"></div></div></div>
 <div class="floor"></div>
+<nav id="rail" aria-label="Sections">
+  <a href="#about">01</a><a href="#stack">02</a><a href="#agents">03</a><a href="#projects">04</a><a href="#network">05</a><a href="#contact">06</a>
+</nav>
 
 <div class="shell">
   <header class="hdr rv">
@@ -240,6 +302,7 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
     <h1>M4ST<span class="g">.</span></h1>
     <p class="sub">Anuj builds <b>self-running AI agents</b>, memory pipelines and software that ships itself.
     Every system is <b>zero-cost, always-on, endlessly iterating</b> — like this very grid beneath your feet.</p>
+    <p class="typed-line"><span id="typed"></span><span class="caret"></span></p>
     <div class="cta">
       <a class="btn" href="#projects">Open Source</a>
       <a class="btn pink" href="#network">The Network</a>
@@ -257,10 +320,10 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
     <p class="sec-tag">// 01 — WHO</p>
     <h2 class="sec">One dev. <em>Fourteen</em> interfaces. Infinite agents.</h2>
     <div class="about-grid">
-      <div class="card rv"><div class="stat">14</div><div class="stat-lbl">Live Network Sites</div></div>
-      <div class="card rv"><div class="stat">12+</div><div class="stat-lbl">Autonomous Agents</div></div>
-      <div class="card rv"><div class="stat">₹0</div><div class="stat-lbl">Monthly Infra Cost</div></div>
-      <div class="card rv"><div class="stat">24/7</div><div class="stat-lbl">Always On</div></div>
+      <div class="card rv"><div class="stat" data-count="14">0</div><div class="stat-lbl">Live Network Sites</div></div>
+      <div class="card rv"><div class="stat" data-count="12" data-suf="+">0</div><div class="stat-lbl">Autonomous Agents</div></div>
+      <div class="card rv"><div class="stat" data-count="0" data-pre="₹">₹0</div><div class="stat-lbl">Monthly Infra Cost</div></div>
+      <div class="card rv"><div class="stat" data-count="24" data-suf="/7">0</div><div class="stat-lbl">Always On</div></div>
     </div>
   </section>
 
@@ -289,6 +352,10 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
       <div class="card ag rv"><div class="ic">⚡</div><h3>PIPELINE <i>RUSH</i></h3>
         <p>Self-healing automation chains that deploy, test and report while you sleep. Zero-cost, always-on.</p>
         <div class="chips"><span class="chip">CI/CD</span><span class="chip">Webhooks</span><span class="chip">Schedulers</span></div></div>
+    </div>
+    <div class="term rv">
+      <div class="term-head"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="term-title">agent_status.log — live</span></div>
+      <div class="term-body" id="termBody"></div>
     </div>
   </section>
 
@@ -468,6 +535,7 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
   <p class="fcopy">© 2026 M4ST — built by <b>Anuj</b>, Bareilly, India. Zero-cost, always.</p>
 </footer>
 
+<a href="#" id="totop" aria-label="Back to top">▲</a>
 <div id="trail"></div>
 
 <script>
@@ -522,6 +590,62 @@ document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
     const ist=new Date(now.getTime()+((5*60+30)*60*1000));
     el.textContent='IST '+pad(ist.getUTCHours())+':'+pad(ist.getUTCMinutes())+':'+pad(ist.getUTCSeconds());}
   tick();setInterval(tick,1000);})();
+
+/* BOOT SEQUENCE */
+(function(){const boot=document.getElementById('boot'),bar=boot.querySelector('.boot-bar i'),txt=document.getElementById('bootTxt');
+const msgs=['BOOTING GRID','MOUNTING NEURAL MEMORY','SPAWNING AGENTS','SYNCING 14 INTERFACES','SYSTEM ONLINE'];
+let p=0;document.body.style.overflow='hidden';
+const iv=setInterval(()=>{p+=Math.random()*16+9;
+  if(p>=100){p=100;clearInterval(iv);txt.textContent='SYSTEM ONLINE';bar.style.width='100%';
+    setTimeout(()=>{boot.classList.add('off');document.body.style.overflow='';setTimeout(()=>boot.remove(),600)},380);}
+  else{bar.style.width=p+'%';txt.textContent=msgs[Math.min(msgs.length-1,Math.floor(p/100*msgs.length))];}},120);
+boot.addEventListener('click',()=>{clearInterval(iv);bar.style.width='100%';txt.textContent='SYSTEM ONLINE';
+  boot.classList.add('off');document.body.style.overflow='';setTimeout(()=>boot.remove(),600);});})();
+
+/* SCROLL PROGRESS + BACK TO TOP */
+(function(){const pr=document.getElementById('progress'),tt=document.getElementById('totop');
+function upd(){const h=document.documentElement,s=Math.min(100,h.scrollTop/(h.scrollHeight-h.clientHeight)*100||0);
+  pr.style.width=s+'%';tt.classList.toggle('show',h.scrollTop>600)}
+addEventListener('scroll',upd,{passive:true});upd();
+tt.addEventListener('click',e=>{e.preventDefault();scrollTo({top:0,behavior:'smooth'})});})();
+
+/* SCROLLSPY */
+(function(){const map={};document.querySelectorAll('section[id]').forEach(s=>{map[s.id]=s});
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  document.querySelectorAll('.hnav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));
+  document.querySelectorAll('#rail a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-40% 0px -55% 0px'});
+Object.values(map).forEach(s=>spy.observe(s));})();
+
+/* HERO TYPING */
+(function(){const el=document.getElementById('typed');if(!el)return;
+const words=['self-running AI agents','neural memory pipelines','RAG vector systems','software that ships itself','zero-cost autonomous stacks'];
+let wi=0,ci=0,del=false;
+(function loop(){const w=words[wi];el.textContent=w.slice(0,ci);
+  if(!del){ci++;if(ci>w.length){del=true;setTimeout(loop,1400);return}}
+  else{ci--;if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(loop,300);return}}
+  setTimeout(loop,del?38:78);})();})();
+
+/* COUNT-UP STATS */
+(function(){document.querySelectorAll('.stat').forEach(s=>{
+  const pre=s.dataset.pre||'',suf=s.dataset.suf||'',target=parseInt(s.dataset.count,10);
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+    obs.unobserve(s);const t0=performance.now(),dur=1200;
+    (function step(now){const k=Math.min(1,(now-t0)/dur),v=Math.round(target*(1-Math.pow(1-k,3)));
+      s.textContent=pre+v+suf;if(k<1)requestAnimationFrame(step)})(t0);}})},{threshold:.5});
+  obs.observe(s);});})();
+
+/* TERMINAL LOG */
+(function(){const tb=document.getElementById('termBody');if(!tb)return;
+const lines=['MESH → M4STCLAW routing: online','MEM → vector memory mounted · ChromaLite','AGT → 3 agents spawned · ready','NET → 14/14 interfaces responding','DEP → zero-cost deploy: OK','COST → ₹0.00 this month','HINT → press [M] to flash the grid'];
+let li=0;
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){obs.unobserve(tb);typeLine()}})},{threshold:.3});obs.observe(tb);
+function now(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')}
+function typeLine(){if(li>=lines.length){li=0;tb.innerHTML=''}
+  const line=lines[li];let ci=0;const p=document.createElement('p');tb.appendChild(p);
+  (function type(){if(ci<=line.length){
+    const seg=line.slice(0,ci),parts=seg.split(' → ');
+    p.innerHTML='<span class="tk">['+now()+']</span> '+(parts.length>1?'<span class="tc">'+parts[0]+'</span> → '+parts.slice(1).join(' → '):seg);
+    ci++;setTimeout(type,14);}else{li++;setTimeout(typeLine,300)}})();}})();
 
 /* EASTER EGG: press M to flash the grid */
 document.addEventListener('keydown',e=>{if((e.key==='m'||e.key==='M')){
