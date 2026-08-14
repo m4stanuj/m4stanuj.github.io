@@ -1,656 +1,565 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M4ST // SYNTHWAVE — Anuj | Autonomous Agent Systems</title>
-<meta name="description" content="M4ST // SYNTHWAVE — Anuj builds autonomous agent systems, AI pipelines and self-running software. 14 live interfaces, 12+ agents, zero-cost infra. Ride the neon grid.">
-<meta name="theme-color" content="#0b0220">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://m4st.vercel.app/">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://m4st.vercel.app/">
-<meta property="og:title" content="M4ST // SYNTHWAVE — Anuj | Autonomous Agent Systems">
-<meta property="og:description" content="Anuj builds autonomous agent systems. 14 live interfaces, 12+ agents, zero-cost infra. Ride the neon grid.">
-<meta property="og:image" content="https://m4st.vercel.app/og-m4st.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="M4ST // SYNTHWAVE — Anuj | Autonomous Agent Systems">
-<meta name="twitter:description" content="Anuj builds autonomous agent systems. Ride the neon grid.">
-<meta name="twitter:image" content="https://m4st.vercel.app/og-m4st.png">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Anuj","url":"https://m4st.vercel.app/","jobTitle":"Autonomous Agent Systems Engineer","address":{"@type":"PostalAddress","addressLocality":"Bareilly","addressCountry":"IN"},"sameAs":["https://github.com/m4stanuj","https://m4stanuj.vercel.app/"]}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --pink:#ff2a6d; --cyan:#05d9e8; --purple:#a55eea; --lime:#d7ff3e;
-  --bg:#0b0220; --panel:rgba(12,4,36,.72); --line:rgba(5,217,232,.28);
-  --text:#e8f6ff; --muted:#9aa7c7;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden}
-::selection{background:var(--pink);color:#fff}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M4ST // SYNTHWAVE — Anuj | Autonomous Agent Systems</title>
+<meta name="description" content="M4ST // SYNTHWAVE — Anuj builds autonomous agent systems, AI pipelines and self-running software. 14 live interfaces, 12+ agents, zero-cost infra. Ride the neon grid.">
+<meta name="theme-color" content="#0b0220">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://m4st.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://m4st.vercel.app/">
+<meta property="og:title" content="M4ST // SYNTHWAVE — Anuj | Autonomous Agent Systems">
+<meta property="og:description" content="Anuj builds autonomous agent systems. 14 live interfaces, 12+ agents, zero-cost infra. Ride the neon grid.">
+<meta property="og:image" content="https://m4st.vercel.app/og-m4st.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="M4ST // SYNTHWAVE — Anuj | Autonomous Agent Systems">
+<meta name="twitter:description" content="Anuj builds autonomous agent systems. Ride the neon grid.">
+<meta name="twitter:image" content="https://m4st.vercel.app/og-m4st.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Anuj","url":"https://m4st.vercel.app/","jobTitle":"Autonomous Agent Systems Engineer","address":{"@type":"PostalAddress","addressLocality":"Bareilly","addressCountry":"IN"},"sameAs":["https://github.com/m4stanuj","https://m4stanuj.vercel.app/"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff2a6d; --cyan:#05d9e8; --purple:#a55eea; --lime:#d7ff3e;
+  --bg:#0b0220; --panel:rgba(12,4,36,.72); --line:rgba(5,217,232,.28);
+  --text:#e8f6ff; --muted:#9aa7c7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden}
+::selection{background:var(--pink);color:#fff}
+
+/* ---------- CRT SCANLINE ---------- */
+body::after{content:"";position:fixed;inset:0;z-index:98;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px)}
+
+/* ---------- STARFIELD ---------- */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ---------- SYNTHWAVE SUNSET ---------- */
+.sky{position:fixed;inset:0;z-index:0;background:
+  radial-gradient(120% 90% at 50% 0%, #1a0b3e 0%, #0b0220 45%);
+  overflow:hidden;pointer-events:none}
+.sunwrap{position:absolute;left:50%;bottom:34%;transform:translateX(-50%);width:340px;height:340px;filter:drop-shadow(0 0 60px rgba(255,42,109,.45))}
+.sun{position:absolute;inset:0;border-radius:50%;
+  background:
+    linear-gradient(180deg,#fff4c2 0%,#ffd76a 18%,#ff9e2c 40%,#ff2a6d 68%,#a55eea 100%);
+  -webkit-mask:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 40px);
+          mask:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 40px);
+  animation:sunPulse 6s ease-in-out infinite}
+@keyframes sunPulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.025);filter:brightness(1.15)}}
+.sunglow{position:absolute;left:50%;bottom:34%;transform:translateX(-50%);width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,42,109,.28) 0%,rgba(165,94,234,.12) 40%,transparent 70%);
+  animation:glowPulse 4s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{opacity:.7}50%{opacity:1}}
+
+/* ---------- GRID FLOOR ---------- */
+.floor{position:fixed;left:-50%;right:-50%;bottom:0;height:46vh;z-index:0;
+  background:linear-gradient(180deg,transparent 0%,rgba(11,2,32,.4) 12%,rgba(11,2,32,.9) 100%);
+  transform:perspective(420px) rotateX(58deg);transform-origin:50% 0;overflow:hidden;pointer-events:none}
+.floor::before{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,transparent 0%,rgba(5,217,232,.55) 96%,transparent 100%);
+  background-size:100% 54px;
+  -webkit-mask:linear-gradient(90deg,transparent 6%,#000 50%,transparent 94%);
+          mask:linear-gradient(90deg,transparent 6%,#000 50%,transparent 94%);
+  animation:gridScroll 1.1s linear infinite}
+@keyframes gridScroll{from{background-position:0 0}to{background-position:0 54px}}
+.floor::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 49.4%,rgba(5,217,232,.75) 50%,transparent 50.6%);
+  background-size:90px 100%;opacity:.5;
+  -webkit-mask:linear-gradient(180deg,transparent 0%,#000 55%,transparent 100%);
+          mask:linear-gradient(180deg,transparent 0%,#000 55%,transparent 100%)}
+
+/* ---------- LAYOUT ---------- */
+.shell{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* ---------- HEADER ---------- */
+.hdr{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:19px;letter-spacing:.14em;
+  color:#fff;text-shadow:0 0 8px var(--cyan),0 0 22px rgba(5,217,232,.5)}
+.logo span{color:var(--pink);text-shadow:0 0 8px var(--pink)}
+.hnav{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.hnav a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:.2s}
+.hnav a:hover{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}
+.clock{font-size:11px;color:var(--lime);letter-spacing:.14em;border:1px solid rgba(215,255,62,.35);padding:5px 10px;border-radius:4px;text-shadow:0 0 8px rgba(215,255,62,.5)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 0 120px}
+.kick{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--cyan);text-shadow:0 0 12px var(--cyan);margin-bottom:18px}
+.kick::before{content:"▸ "}.kick::after{content:" ◂"}
+.hero h1{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(58px,13vw,150px);line-height:.95;letter-spacing:.04em;
+  background:linear-gradient(90deg,#fff 0%,var(--cyan) 30%,var(--pink) 60%,#fff 100%);background-size:220% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 6s linear infinite;filter:drop-shadow(0 0 26px rgba(255,42,109,.35))}
+@keyframes shine{to{background-position:220% center}}
+.hero h1 .g{color:var(--lime);-webkit-text-fill-color:var(--lime);text-shadow:0 0 18px var(--lime)}
+.sub{max-width:620px;margin:26px auto 0;color:var(--muted);font-size:14px;line-height:1.75}
+.sub b{color:var(--text);font-weight:600}
+.cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;justify-content:center}
+.btn{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  padding:14px 30px;border:1px solid var(--cyan);color:var(--cyan);border-radius:4px;position:relative;overflow:hidden;transition:.25s}
+.btn:hover{box-shadow:0 0 24px rgba(5,217,232,.5);text-shadow:0 0 8px var(--cyan);transform:translateY(-2px)}
+.btn.pink{border-color:var(--pink);color:var(--pink)}
+.btn.pink:hover{box-shadow:0 0 24px rgba(255,42,109,.5);text-shadow:0 0 8px var(--pink)}
+.meta{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;gap:26px;font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+.meta b{color:var(--cyan);text-shadow:0 0 8px var(--cyan)}
+
+/* ---------- SECTIONS ---------- */
+section{padding:72px 0}
+.sec-tag{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--pink);text-shadow:0 0 10px var(--pink);margin-bottom:10px}
+h2.sec{font-family:'Orbitron',sans-serif;font-weight:700;font-size:clamp(26px,4.6vw,42px);letter-spacing:.06em;margin-bottom:40px}
+h2.sec em{font-style:normal;color:var(--cyan);text-shadow:0 0 14px var(--cyan)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px;backdrop-filter:blur(10px);box-shadow:0 0 30px rgba(5,217,232,.06);transition:.3s}
+.card:hover{border-color:var(--pink);box-shadow:0 0 34px rgba(255,42,109,.14);transform:translateY(-3px)}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.stat{font-family:'Orbitron',sans-serif;font-weight:700;font-size:30px;color:var(--lime);text-shadow:0 0 16px var(--lime)}
+.stat-lbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* skills */
+.skill{margin-bottom:20px}
+.skill-top{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.1em;margin-bottom:8px}
+.skill-top span:first-child{color:var(--text)}.skill-top span:last-child{color:var(--cyan)}
+.bar{height:10px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--pink),var(--cyan));
+  box-shadow:0 0 14px rgba(255,42,109,.6);width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+
+/* agents */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.ag .ic{font-size:26px;margin-bottom:12px}
+.ag h3{font-family:'Orbitron',sans-serif;font-size:16px;letter-spacing:.08em;margin-bottom:10px;color:#fff}
+.ag h3 i{font-style:normal;color:var(--pink)}
+.ag p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(5,217,232,.4);color:var(--cyan);border-radius:100px}
+.chip.hot{border-color:rgba(255,42,109,.5);color:var(--pink)}
+
+/* projects */
+.gridp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.proj .ptop{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.proj .ic{font-size:24px}
+.lang{font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:100px;border:1px solid rgba(165,94,234,.5);color:var(--purple)}
+.proj h3{font-family:'Orbitron',sans-serif;font-size:16px;letter-spacing:.06em;margin-bottom:8px}
+.proj h3 a{color:#fff;text-decoration:none;transition:.2s}
+.proj h3 a:hover{color:var(--cyan);text-shadow:0 0 12px var(--cyan)}
+.proj p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.proj .go{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);text-decoration:none;border-bottom:1px dashed rgba(215,255,62,.4);padding-bottom:2px;transition:.2s}
+.proj .go:hover{text-shadow:0 0 10px var(--lime);border-color:var(--lime)}
+
+
+/* marquee */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:10px 0}
+.mq{display:inline-block;white-space:nowrap;font-family:'Orbitron',sans-serif;font-weight:700;letter-spacing:.3em;font-size:15px;
+  color:transparent;-webkit-text-stroke:1px var(--purple);animation:mq 26s linear infinite}
+.mq span{color:var(--pink);-webkit-text-stroke:0;margin:0 22px}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* contact */
+.contact{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.contact a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:.08em;border:1px solid rgba(255,255,255,.14);padding:12px 20px;border-radius:6px;transition:.25s}
+.contact a:hover{color:var(--lime);border-color:var(--lime);box-shadow:0 0 18px rgba(215,255,62,.25)}
+
+/* ---------- FOOTER ---------- */
+footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:44px 22px 34px;text-align:center;background:rgba(8,2,24,.85);backdrop-filter:blur(8px)}
+.fnet{font-family:'Orbitron',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em;margin-bottom:6px}
+.fnet span{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}
+.fcount{font-size:11px;color:var(--purple);letter-spacing:.22em;text-transform:uppercase;margin-bottom:22px}
+nav.links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:860px;margin:0 auto 24px}
+nav.links a{color:var(--text);text-decoration:none;border:1.5px solid var(--cyan);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;transition:all .18s;opacity:.85}
+nav.links a:hover{opacity:1;box-shadow:0 0 14px rgba(5,217,232,.5);transform:translateY(-1px)}
+nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);font-weight:700;opacity:1;box-shadow:0 0 18px rgba(215,255,62,.45)}
+.fcopy{font-size:11px;color:var(--muted);letter-spacing:.1em}
+.fcopy b{color:var(--pink)}
+
+/* ---------- CURSOR TRAIL ---------- */
+#trail{position:fixed;top:0;left:0;width:6px;height:6px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 12px var(--cyan),0 0 30px rgba(5,217,232,.5);pointer-events:none;z-index:99;transition:transform .12s}
+#trail.big{transform:scale(3);background:var(--pink);box-shadow:0 0 16px var(--pink)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#070116}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--pink),var(--cyan));border-radius:5px;box-shadow:0 0 10px rgba(255,42,109,.5)}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--cyan),var(--pink))}
+
+/* ---------- SCROLL PROGRESS ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:120;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--lime));box-shadow:0 0 12px rgba(5,217,232,.8)}
+
+/* ---------- BACK TO TOP ---------- */
+#totop{position:fixed;right:22px;bottom:22px;width:44px;height:44px;z-index:110;display:flex;align-items:center;justify-content:center;border:1px solid var(--cyan);color:var(--cyan);background:rgba(8,2,24,.85);border-radius:50%;font-size:15px;text-decoration:none;opacity:0;transform:translateY(14px);pointer-events:none;transition:.3s;backdrop-filter:blur(6px)}
+#totop.show{opacity:1;transform:none;pointer-events:auto}
+#totop:hover{box-shadow:0 0 20px rgba(5,217,232,.6);text-shadow:0 0 10px var(--cyan)}
+
+/* ---------- SIDE RAIL ---------- */
+#rail{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:14px}
+#rail a{color:var(--muted);text-decoration:none;font-size:10.5px;letter-spacing:.1em;font-family:'Orbitron',sans-serif;position:relative;transition:.2s;opacity:.55}
+#rail a::before{content:"";position:absolute;left:-10px;top:50%;transform:translateY(-50%);width:18px;height:1px;background:var(--cyan);opacity:0;transition:.2s}
+#rail a.on{color:var(--lime);opacity:1;text-shadow:0 0 10px rgba(215,255,62,.6)}
+#rail a.on::before{opacity:1;box-shadow:0 0 8px var(--cyan)}
+
+/* ---------- BOOT SCREEN ---------- */
+#boot{position:fixed;inset:0;z-index:200;background:#070116;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease}
+#boot.off{opacity:0;pointer-events:none}
+.boot-inner{text-align:center;width:300px}
+.boot-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:34px;letter-spacing:.16em;color:#fff;text-shadow:0 0 14px var(--cyan),0 0 40px rgba(5,217,232,.5);margin-bottom:26px}
+.boot-logo span{color:var(--pink);text-shadow:0 0 14px var(--pink)}
+.boot-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.07);border:1px solid rgba(5,217,232,.3);overflow:hidden}
+.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));box-shadow:0 0 12px rgba(5,217,232,.8)}
+.boot-txt{margin-top:14px;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- TYPING ---------- */
+.typed-line{margin-top:12px;min-height:22px;font-size:13.5px;color:var(--cyan);letter-spacing:.05em;text-shadow:0 0 10px rgba(5,217,232,.5)}
+.caret{display:inline-block;width:2px;height:15px;background:var(--cyan);margin-left:3px;vertical-align:-2px;animation:blink 1s steps(1) infinite;box-shadow:0 0 8px var(--cyan)}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- TERMINAL ---------- */
+.term{margin-top:22px;border:1px solid var(--line);border-radius:10px;background:rgba(3,1,12,.85);backdrop-filter:blur(8px);overflow:hidden;box-shadow:0 0 30px rgba(5,217,232,.08)}
+.term-head{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);background:rgba(12,4,36,.6)}
+.tdot{width:10px;height:10px;border-radius:50%}
+.tdot.r{background:#ff5f57}.tdot.y{background:#febc2e}.tdot.g{background:#28c840}
+.term-title{margin-left:8px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.term-body{padding:14px 16px;font-size:12px;line-height:1.85;min-height:120px}
+.term-body p{white-space:pre-wrap}
+.tk{color:var(--purple)}
+.tc{color:var(--cyan)}
+.term-body .ok{color:var(--lime)}
+
+/* active nav */
+.hnav a.on{color:var(--lime);text-shadow:0 0 10px var(--lime)}
+
+@media(max-width:640px){
+  .hdr{flex-direction:column;gap:12px}
+  .meta{position:static;transform:none;margin-top:18px;justify-content:center}
+  #rail{display:none}
+  #totop{right:14px;bottom:14px}
+}
+</style>
+</head>
+<body>
+<div id="boot"><div class="boot-inner">
+  <div class="boot-logo">M4ST<span>//SW</span></div>
+  <div class="boot-bar"><i></i></div>
+  <div class="boot-txt" id="bootTxt">BOOTING GRID</div>
+</div></div>
+<div id="progress"></div>
+<canvas id="stars"></canvas>
+<div class="sky"><div class="sunglow"></div><div class="sunwrap"><div class="sun"></div></div></div>
+<div class="floor"></div>
+<nav id="rail" aria-label="Sections">
+  <a href="#about">01</a><a href="#stack">02</a><a href="#agents">03</a><a href="#projects">04</a><a href="#contact">05</a>
+</nav>
+
+<div class="shell">
+  <header class="hdr rv">
+    <div class="logo">M4ST<span>//SW</span></div>
+    <nav class="hnav">
+      <a href="#about">About</a><a href="#stack">Stack</a><a href="#agents">Agents</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      <span class="clock" id="clock">IST --:--:--</span>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="kick">Autonomous Agent Systems</p>
+    <h1>M4ST<span class="g">.</span></h1>
+    <p class="sub">Anuj builds <b>self-running AI agents</b>, memory pipelines and software that ships itself.
+    Every system is <b>zero-cost, always-on, endlessly iterating</b> — like this very grid beneath your feet.</p>
+    <p class="typed-line"><span id="typed"></span><span class="caret"></span></p>
+    <div class="cta">
+      <a class="btn" href="#projects">Open Source</a>
+      <a class="btn pink" href="#projects">Open Source</a>
+    </div>
+    <div class="meta">
+      <span>Built by <b>Anuj</b></span><span>Bareilly · India</span><span>Est. <b>2026</b></span>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="mq">AUTONOMOUS AGENTS<span>✦</span>NEURAL MEMORY<span>✦</span>RAG PIPELINES<span>✦</span>ZERO-COST INFRA<span>✦</span>ALWAYS-ON SYSTEMS<span>✦</span>REAL-TIME EVOLUTION<span>✦</span></div>
+  </div>
+
+  <section id="about">
+    <p class="sec-tag">// 01 — WHO</p>
+    <h2 class="sec">One dev. <em>Fourteen</em> interfaces. Infinite agents.</h2>
+    <div class="about-grid">
+      <div class="card rv"><div class="stat" data-count="14">0</div><div class="stat-lbl">Live Network Sites</div></div>
+      <div class="card rv"><div class="stat" data-count="12" data-suf="+">0</div><div class="stat-lbl">Autonomous Agents</div></div>
+      <div class="card rv"><div class="stat" data-count="0" data-pre="₹">₹0</div><div class="stat-lbl">Monthly Infra Cost</div></div>
+      <div class="card rv"><div class="stat" data-count="24" data-suf="/7">0</div><div class="stat-lbl">Always On</div></div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <p class="sec-tag">// 02 — STACK</p>
+    <h2 class="sec">Powered by <em>the grid</em></h2>
+    <div class="card rv" style="padding:30px">
+      <div class="skill"><div class="skill-top"><span>Agent Orchestration</span><span>98%</span></div><div class="bar"><i data-w="98%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>LLM / RAG Pipelines</span><span>95%</span></div><div class="bar"><i data-w="95%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Vector Memory &amp; Embeddings</span><span>92%</span></div><div class="bar"><i data-w="92%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Zero-Cost Deploy (Vercel/GitHub)</span><span>100%</span></div><div class="bar"><i data-w="100%"></i></div></div>
+      <div class="skill"><div class="skill-top"><span>Python / JS / Automation</span><span>94%</span></div><div class="bar"><i data-w="94%"></i></div></div>
+    </div>
+  </section>
+
+  <section id="agents">
+    <p class="sec-tag">// 03 — AGENTS</p>
+    <h2 class="sec">Deployed &amp; <em>running now</em></h2>
+    <div class="grid3">
+      <div class="card ag rv"><div class="ic">🧠</div><h3>VECTOR <i>MEMORY</i></h3>
+        <p>Cross-session memory consolidation, relevance decay and context-aware injection — agents that genuinely remember.</p>
+        <div class="chips"><span class="chip">ChromaDB</span><span class="chip">Embeddings</span><span class="chip">RAG</span></div></div>
+      <div class="card ag rv"><div class="ic">🤖</div><h3>SMART <i>GITHUB</i></h3>
+        <p>AI-powered repo intelligence: auto-docs, PR analysis, issue triage and code-review agents, live on GitHub.com.</p>
+        <div class="chips"><span class="chip">GitHub API</span><span class="chip">MCP</span><span class="chip hot">Live</span></div></div>
+      <div class="card ag rv"><div class="ic">⚡</div><h3>PIPELINE <i>RUSH</i></h3>
+        <p>Self-healing automation chains that deploy, test and report while you sleep. Zero-cost, always-on.</p>
+        <div class="chips"><span class="chip">CI/CD</span><span class="chip">Webhooks</span><span class="chip">Schedulers</span></div></div>
+    </div>
+    <div class="term rv">
+      <div class="term-head"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="term-title">agent_status.log — live</span></div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="sec-tag">// 04 — PROJECTS</p>
+    <h2 class="sec">Shipped &amp; <em>open source</em></h2>
+    <div class="gridp">
+      <div class="card proj rv"><div class="ptop"><span class="ic">🕸️</span><span class="lang">Python</span></div>
+        <h3><a href="https://github.com/m4stanuj/M4STCLAW" target="_blank" rel="noopener">M4STCLAW</a></h3>
+        <p>MCP-native autonomous AI mesh network with multi-provider routing, failover, memory and task automation.</p>
+        <div class="chips"><span class="chip">MCP</span><span class="chip">Mesh</span><span class="chip hot">Live</span></div>
+        <a class="go" href="https://github.com/m4stanuj/M4STCLAW" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🧩</span><span class="lang">Python</span></div>
+        <h3><a href="https://github.com/m4stanuj/MAST" target="_blank" rel="noopener">MAST</a></h3>
+        <p>Unified AI stack: MCP servers, provider routes, task chains, memory, scheduler &amp; local fallback. 21 MCP servers.</p>
+        <div class="chips"><span class="chip">21 MCP</span><span class="chip">Task Chains</span><span class="chip hot">Zero-cost</span></div>
+        <a class="go" href="https://github.com/m4stanuj/MAST" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🛠️</span><span class="lang">TypeScript</span></div>
+        <h3><a href="https://github.com/m4stanuj/openwork" target="_blank" rel="noopener">OpenWork</a></h3>
+        <p>Universal MCP workspace / control-plane for AI IDEs: portable configs, skills, agents, hot-reload and multi-tool automation.</p>
+        <div class="chips"><span class="chip">MCP</span><span class="chip">Hot-reload</span><span class="chip">Control-plane</span></div>
+        <a class="go" href="https://github.com/m4stanuj/openwork" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🐳</span><span class="lang">Docker</span></div>
+        <h3><a href="https://github.com/m4stanuj/wtf-m4st" target="_blank" rel="noopener">WTF M4ST</a></h3>
+        <p>Autonomous AI agent stack: 9 Docker services, 3 CrewAI crews, React dashboard, zero budget, consumer hardware.</p>
+        <div class="chips"><span class="chip">9 Services</span><span class="chip">CrewAI</span><span class="chip hot">Dashboard</span></div>
+        <a class="go" href="https://github.com/m4stanuj/wtf-m4st" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🛰️</span><span class="lang">Python</span></div>
+        <h3><a href="https://github.com/m4stanuj/cai-osint" target="_blank" rel="noopener">CAI-OSINT</a></h3>
+        <p>Autonomous AI OSINT / security analyst: Nmap, Shodan, Nuclei, CVE research and CEH-style workflows for authorized targets.</p>
+        <div class="chips"><span class="chip">Nmap</span><span class="chip">Shodan</span><span class="chip">Nuclei</span></div>
+        <a class="go" href="https://github.com/m4stanuj/cai-osint" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🔀</span><span class="lang">Python</span></div>
+        <h3><a href="https://github.com/m4stanuj/mast-llm-router" target="_blank" rel="noopener">Mast LLM Router</a></h3>
+        <p>Task-aware LLM router with fallback chains, free/local provider routing, semantic cache hooks and cost-aware selection.</p>
+        <div class="chips"><span class="chip">Fallback</span><span class="chip">Cost-aware</span><span class="chip">Routing</span></div>
+        <a class="go" href="https://github.com/m4stanuj/mast-llm-router" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">⚡</span><span class="lang">Python</span></div>
+        <h3><a href="https://github.com/m4stanuj/semantic-cache-engine" target="_blank" rel="noopener">Semantic Cache</a></h3>
+        <p>High-speed semantic cache engine for LLM reuse: embeddings, TTL policies and zero-cost prompt optimization.</p>
+        <div class="chips"><span class="chip">Embeddings</span><span class="chip">TTL</span><span class="chip hot">Zero-cost</span></div>
+        <a class="go" href="https://github.com/m4stanuj/semantic-cache-engine" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🎯</span><span class="lang">Python</span></div>
+        <h3><a href="https://github.com/m4stanuj/LeadSniper" target="_blank" rel="noopener">LeadSniper</a></h3>
+        <p>Public-signal lead discovery, scoring, enrichment notes and human-approved outreach drafts.</p>
+        <div class="chips"><span class="chip">Discovery</span><span class="chip">Scoring</span><span class="chip">Outreach</span></div>
+        <a class="go" href="https://github.com/m4stanuj/LeadSniper" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🤖</span><span class="lang">JavaScript</span></div>
+        <h3><a href="https://github.com/m4stanuj/smart-github-vercel-app" target="_blank" rel="noopener">Smart GitHub</a></h3>
+        <p>Smart GitHub + Vercel CI/CD integration demo with SEO optimizations — the agent that ships itself.</p>
+        <div class="chips"><span class="chip">CI/CD</span><span class="chip">Vercel</span><span class="chip hot">Live</span></div>
+        <a class="go" href="https://github.com/m4stanuj/smart-github-vercel-app" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🏴‍☠️</span><span class="lang">HTML</span></div>
+        <h3><a href="https://github.com/m4stanuj/onepiece-eastblue" target="_blank" rel="noopener">One Piece East Blue</a></h3>
+        <p>One Piece East Blue Bounty Archive — wanted posters site, built as a zero-cost static deploy.</p>
+        <div class="chips"><span class="chip">Static</span><span class="chip">Bounty</span><span class="chip">Archive</span></div>
+        <a class="go" href="https://github.com/m4stanuj/onepiece-eastblue" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🎨</span><span class="lang">HTML</span></div>
+        <h3><a href="https://github.com/m4stanuj/mast-designs" target="_blank" rel="noopener">Mast Designs</a></h3>
+        <p>MAST design variant portfolios — 11 different UI styles powering the m4stanuj.vercel.app ecosystem.</p>
+        <div class="chips"><span class="chip">11 Styles</span><span class="chip">Portfolio</span><span class="chip hot">Live</span></div>
+        <a class="go" href="https://github.com/m4stanuj/mast-designs" target="_blank" rel="noopener">View repo →</a></div>
+
+      <div class="card proj rv"><div class="ptop"><span class="ic">🔄</span><span class="lang">Python</span></div>
+        <h3><a href="https://github.com/m4stanuj/antigravity-account-switcher" target="_blank" rel="noopener">Antigravity Switcher</a></h3>
+        <p>Multi-account session manager for Antigravity IDE — one-click profile switching with rate-limit detection.</p>
+        <div class="chips"><span class="chip">Profiles</span><span class="chip">Rate-limit</span><span class="chip">One-click</span></div>
+        <a class="go" href="https://github.com/m4stanuj/antigravity-account-switcher" target="_blank" rel="noopener">View repo →</a></div>
+    </div>
+  </section>
+
+
+  <section id="contact">
+    <p class="sec-tag">// 05 — CONNECT</p>
+    <h2 class="sec">Enter the <em>grid</em></h2>
+    <div class="contact">
+      <a href="mailto:m4stanuj@gmail.com">✉ m4stanuj@gmail.com</a>
+      <a href="https://github.com/m4stanuj" target="_blank" rel="noopener">⌥ github.com/m4stanuj</a>
+      <a href="https://m4stanuj.vercel.app/" target="_blank" rel="noopener">✶ Main Portfolio</a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p class="fnet">M4ST <span>NETWORK</span></p>
+  <p class="fcount">14 autonomous agent interfaces</p>
+  <nav class="links" aria-label="M4ST variants">
+    <a href="https://m4stanuj.vercel.app">m4stanuj</a>
+    <a href="https://mast-anuj.vercel.app">mast-anuj</a>
+    <a href="https://mast-anuj-site.vercel.app">mast-anuj-site</a>
+    <a href="https://m4st.vercel.app" class="me">m4st</a>
+    <a href="https://mastanuj-royal.vercel.app">mastanuj-royal</a>
+    <a href="https://mastanuj-elite.vercel.app">mastanuj-elite</a>
+    <a href="https://mastanuj-prism.vercel.app">mastanuj-prism</a>
+    <a href="https://mastanuj-pixel.vercel.app">mastanuj-pixel</a>
+    <a href="https://mastanuj-v1.vercel.app">mastanuj-v1</a>
+    <a href="https://mastanuj-retro.vercel.app">mastanuj-retro</a>
+    <a href="https://mastanuj-command.vercel.app">mastanuj-command</a>
+    <a href="https://mastanuj-dossier.vercel.app">mastanuj-dossier</a>
+    <a href="https://mastanuj-comic.vercel.app">mastanuj-comic</a>
+    <a href="https://mastanuj-core.vercel.app">mastanuj-core</a>
+  </nav>
+  <p class="fcopy">© 2026 M4ST — built by <b>Anuj</b>, Bareilly, India. Zero-cost, always.</p>
+</footer>
+
+<a href="#" id="totop" aria-label="Back to top">▲</a>
+<div id="trail"></div>
+
+<script>
+/* STARFIELD + SHOOTING STARS */
+(function(){
+  const cv=document.getElementById('stars'),ctx=cv.getContext('2d');let W,H,stars=[],shoot=[];
+  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;initStars()}
+  function initStars(){stars=[];const n=Math.min(220,Math.floor(W*H/6000));
+    for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H*.72,r:Math.random()*1.4+.2,a:Math.random()*.6+.4,tw:Math.random()*.05+.01,p:Math.random()*Math.PI*2});}
+  function spawnShoot(){const fromL=Math.random()<.5;
+    shoot.push({x:fromL?Math.random()*W*.3:W-Math.random()*W*.3,y:Math.random()*H*.35,vx:(fromL?1:-1)*(6+Math.random()*5),vy:2.2+Math.random()*1.5,life:1})}
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    for(const s of stars){s.p+=s.tw;s.a+=Math.sin(s.p)*.15;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(232,246,255,'+Math.max(.1,Math.min(1,s.a))+')';ctx.fill();}
+    if(Math.random()<.012)spawnShoot();
+    shoot=shoot.filter(s=>s.life>0);
+    for(const s of shoot){s.x+=s.vx;s.y+=s.vy;s.life-=.012;
+      const g=ctx.createLinearGradient(s.x,s.y,s.x-s.vx*10,s.y-s.vy*10);
+      g.addColorStop(0,'rgba(215,255,62,'+s.life+')');g.addColorStop(1,'rgba(215,255,62,0)');
+      ctx.strokeStyle=g;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-s.vx*12,s.y-s.vy*12);ctx.stroke();}
+    requestAnimationFrame(tick)}
+  window.addEventListener('resize',resize);resize();tick();
+})();
+
+/* SUN PARALLAX ON MOUSE */
+(function(){const sun=document.querySelector('.sunwrap');
+  window.addEventListener('mousemove',e=>{const dx=(e.clientX/innerWidth-.5)*18,dy=(e.clientY/innerHeight-.5)*12;
+    sun.style.transform='translateX(calc(-50% + '+dx+'px)) translateY('+dy+'px)';});})();
+
+/* SKILL BARS */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  const bar=e.target;bar.style.width=bar.dataset.w;io.unobserve(bar)}})},{threshold:.4});
+document.querySelectorAll('.bar i').forEach(b=>io.observe(b));
+
+/* REVEAL */
+const rv=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
+
+/* CURSOR TRAIL */
+(function(){const t=document.getElementById('trail');let x=0,y=0,tx=0,ty=0;
+  window.addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY});
+  document.querySelectorAll('a,.card,.btn').forEach(el=>{el.addEventListener('mouseenter',()=>t.classList.add('big'));
+    el.addEventListener('mouseleave',()=>t.classList.remove('big'))});
+  (function loop(){tx+=(x-tx)*.16;ty+=(y-ty)*.16;t.style.left=tx+'px';t.style.top=ty+'px';requestAnimationFrame(loop)})();})();
+
+/* LIVE IST CLOCK */
+(function(){const el=document.getElementById('clock');
+  function pad(n){return String(n).padStart(2,'0')}
+  function tick(){const now=new Date();
+    const ist=new Date(now.getTime()+((5*60+30)*60*1000));
+    el.textContent='IST '+pad(ist.getUTCHours())+':'+pad(ist.getUTCMinutes())+':'+pad(ist.getUTCSeconds());}
+  tick();setInterval(tick,1000);})();
+
+/* BOOT SEQUENCE */
+(function(){const boot=document.getElementById('boot'),bar=boot.querySelector('.boot-bar i'),txt=document.getElementById('bootTxt');
+const msgs=['BOOTING GRID','MOUNTING NEURAL MEMORY','SPAWNING AGENTS','SYNCING 14 INTERFACES','SYSTEM ONLINE'];
+let p=0;document.body.style.overflow='hidden';
+const iv=setInterval(()=>{p+=Math.random()*16+9;
+  if(p>=100){p=100;clearInterval(iv);txt.textContent='SYSTEM ONLINE';bar.style.width='100%';
+    setTimeout(()=>{boot.classList.add('off');document.body.style.overflow='';setTimeout(()=>boot.remove(),600)},380);}
+  else{bar.style.width=p+'%';txt.textContent=msgs[Math.min(msgs.length-1,Math.floor(p/100*msgs.length))];}},120);
+boot.addEventListener('click',()=>{clearInterval(iv);bar.style.width='100%';txt.textContent='SYSTEM ONLINE';
+  boot.classList.add('off');document.body.style.overflow='';setTimeout(()=>boot.remove(),600);});})();
+
+/* SCROLL PROGRESS + BACK TO TOP */
+(function(){const pr=document.getElementById('progress'),tt=document.getElementById('totop');
+function upd(){const h=document.documentElement,s=Math.min(100,h.scrollTop/(h.scrollHeight-h.clientHeight)*100||0);
+  pr.style.width=s+'%';tt.classList.toggle('show',h.scrollTop>600)}
+addEventListener('scroll',upd,{passive:true});upd();
+tt.addEventListener('click',e=>{e.preventDefault();scrollTo({top:0,behavior:'smooth'})});})();
+
+/* SCROLLSPY */
+(function(){const map={};document.querySelectorAll('section[id]').forEach(s=>{map[s.id]=s});
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  document.querySelectorAll('.hnav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));
+  document.querySelectorAll('#rail a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-40% 0px -55% 0px'});
+Object.values(map).forEach(s=>spy.observe(s));})();
+
+/* HERO TYPING */
+(function(){const el=document.getElementById('typed');if(!el)return;
+const words=['self-running AI agents','neural memory pipelines','RAG vector systems','software that ships itself','zero-cost autonomous stacks'];
+let wi=0,ci=0,del=false;
+(function loop(){const w=words[wi];el.textContent=w.slice(0,ci);
+  if(!del){ci++;if(ci>w.length){del=true;setTimeout(loop,1400);return}}
+  else{ci--;if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(loop,300);return}}
+  setTimeout(loop,del?38:78);})();})();
+
+/* COUNT-UP STATS */
+(function(){document.querySelectorAll('.stat').forEach(s=>{
+  const pre=s.dataset.pre||'',suf=s.dataset.suf||'',target=parseInt(s.dataset.count,10);
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+    obs.unobserve(s);const t0=performance.now(),dur=1200;
+    (function step(now){const k=Math.min(1,(now-t0)/dur),v=Math.round(target*(1-Math.pow(1-k,3)));
+      s.textContent=pre+v+suf;if(k<1)requestAnimationFrame(step)})(t0);}})},{threshold:.5});
+  obs.observe(s);});})();
+
+/* TERMINAL LOG */
+(function(){const tb=document.getElementById('termBody');if(!tb)return;
+const lines=['MESH → M4STCLAW routing: online','MEM → vector memory mounted · ChromaLite','AGT → 3 agents spawned · ready','NET → 14/14 interfaces responding','DEP → zero-cost deploy: OK','COST → ₹0.00 this month','HINT → press [M] to flash the grid'];
+let li=0;
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){obs.unobserve(tb);typeLine()}})},{threshold:.3});obs.observe(tb);
+function now(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')}
+function typeLine(){if(li>=lines.length){li=0;tb.innerHTML=''}
+  const line=lines[li];let ci=0;const p=document.createElement('p');tb.appendChild(p);
+  (function type(){if(ci<=line.length){
+    const seg=line.slice(0,ci),parts=seg.split(' → ');
+    p.innerHTML='<span class="tk">['+now()+']</span> '+(parts.length>1?'<span class="tc">'+parts[0]+'</span> → '+parts.slice(1).join(' → '):seg);
+    ci++;setTimeout(type,14);}else{li++;setTimeout(typeLine,300)}})();}})();
+
+/* EASTER EGG: press M to flash the grid */
+document.addEventListener('keydown',e=>{if((e.key==='m'||e.key==='M')){
+  const f=document.querySelector('.floor');f.style.filter='brightness(3)';
+  setTimeout(()=>f.style.filter='',260);}});
+</script>
+</body>
+</html>
 
-/* ---------- CRT SCANLINE ---------- */
-body::after{content:"";position:fixed;inset:0;z-index:98;pointer-events:none;opacity:.5;
-  background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px)}
-
-/* ---------- STARFIELD ---------- */
-#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
-
-/* ---------- SYNTHWAVE SUNSET ---------- */
-.sky{position:fixed;inset:0;z-index:0;background:
-  radial-gradient(120% 90% at 50% 0%, #1a0b3e 0%, #0b0220 45%);
-  overflow:hidden;pointer-events:none}
-.sunwrap{position:absolute;left:50%;bottom:34%;transform:translateX(-50%);width:340px;height:340px;filter:drop-shadow(0 0 60px rgba(255,42,109,.45))}
-.sun{position:absolute;inset:0;border-radius:50%;
-  background:
-    linear-gradient(180deg,#fff4c2 0%,#ffd76a 18%,#ff9e2c 40%,#ff2a6d 68%,#a55eea 100%);
-  -webkit-mask:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 40px);
-          mask:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 40px);
-  animation:sunPulse 6s ease-in-out infinite}
-@keyframes sunPulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.025);filter:brightness(1.15)}}
-.sunglow{position:absolute;left:50%;bottom:34%;transform:translateX(-50%);width:560px;height:560px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,42,109,.28) 0%,rgba(165,94,234,.12) 40%,transparent 70%);
-  animation:glowPulse 4s ease-in-out infinite}
-@keyframes glowPulse{0%,100%{opacity:.7}50%{opacity:1}}
-
-/* ---------- GRID FLOOR ---------- */
-.floor{position:fixed;left:-50%;right:-50%;bottom:0;height:46vh;z-index:0;
-  background:linear-gradient(180deg,transparent 0%,rgba(11,2,32,.4) 12%,rgba(11,2,32,.9) 100%);
-  transform:perspective(420px) rotateX(58deg);transform-origin:50% 0;overflow:hidden;pointer-events:none}
-.floor::before{content:"";position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,transparent 0%,rgba(5,217,232,.55) 96%,transparent 100%);
-  background-size:100% 54px;
-  -webkit-mask:linear-gradient(90deg,transparent 6%,#000 50%,transparent 94%);
-          mask:linear-gradient(90deg,transparent 6%,#000 50%,transparent 94%);
-  animation:gridScroll 1.1s linear infinite}
-@keyframes gridScroll{from{background-position:0 0}to{background-position:0 54px}}
-.floor::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 49.4%,rgba(5,217,232,.75) 50%,transparent 50.6%);
-  background-size:90px 100%;opacity:.5;
-  -webkit-mask:linear-gradient(180deg,transparent 0%,#000 55%,transparent 100%);
-          mask:linear-gradient(180deg,transparent 0%,#000 55%,transparent 100%)}
-
-/* ---------- LAYOUT ---------- */
-.shell{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 22px}
-
-/* ---------- HEADER ---------- */
-.hdr{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
-.logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:19px;letter-spacing:.14em;
-  color:#fff;text-shadow:0 0 8px var(--cyan),0 0 22px rgba(5,217,232,.5)}
-.logo span{color:var(--pink);text-shadow:0 0 8px var(--pink)}
-.hnav{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-.hnav a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:.2s}
-.hnav a:hover{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}
-.clock{font-size:11px;color:var(--lime);letter-spacing:.14em;border:1px solid rgba(215,255,62,.35);padding:5px 10px;border-radius:4px;text-shadow:0 0 8px rgba(215,255,62,.5)}
-
-/* ---------- HERO ---------- */
-.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 0 120px}
-.kick{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--cyan);text-shadow:0 0 12px var(--cyan);margin-bottom:18px}
-.kick::before{content:"▸ "}.kick::after{content:" ◂"}
-.hero h1{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(58px,13vw,150px);line-height:.95;letter-spacing:.04em;
-  background:linear-gradient(90deg,#fff 0%,var(--cyan) 30%,var(--pink) 60%,#fff 100%);background-size:220% auto;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:shine 6s linear infinite;filter:drop-shadow(0 0 26px rgba(255,42,109,.35))}
-@keyframes shine{to{background-position:220% center}}
-.hero h1 .g{color:var(--lime);-webkit-text-fill-color:var(--lime);text-shadow:0 0 18px var(--lime)}
-.sub{max-width:620px;margin:26px auto 0;color:var(--muted);font-size:14px;line-height:1.75}
-.sub b{color:var(--text);font-weight:600}
-.cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;justify-content:center}
-.btn{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
-  padding:14px 30px;border:1px solid var(--cyan);color:var(--cyan);border-radius:4px;position:relative;overflow:hidden;transition:.25s}
-.btn:hover{box-shadow:0 0 24px rgba(5,217,232,.5);text-shadow:0 0 8px var(--cyan);transform:translateY(-2px)}
-.btn.pink{border-color:var(--pink);color:var(--pink)}
-.btn.pink:hover{box-shadow:0 0 24px rgba(255,42,109,.5);text-shadow:0 0 8px var(--pink)}
-.meta{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;gap:26px;font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
-.meta b{color:var(--cyan);text-shadow:0 0 8px var(--cyan)}
-
-/* ---------- SECTIONS ---------- */
-section{padding:72px 0}
-.sec-tag{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--pink);text-shadow:0 0 10px var(--pink);margin-bottom:10px}
-h2.sec{font-family:'Orbitron',sans-serif;font-weight:700;font-size:clamp(26px,4.6vw,42px);letter-spacing:.06em;margin-bottom:40px}
-h2.sec em{font-style:normal;color:var(--cyan);text-shadow:0 0 14px var(--cyan)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px;backdrop-filter:blur(10px);box-shadow:0 0 30px rgba(5,217,232,.06);transition:.3s}
-.card:hover{border-color:var(--pink);box-shadow:0 0 34px rgba(255,42,109,.14);transform:translateY(-3px)}
-
-/* about */
-.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.stat{font-family:'Orbitron',sans-serif;font-weight:700;font-size:30px;color:var(--lime);text-shadow:0 0 16px var(--lime)}
-.stat-lbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-
-/* skills */
-.skill{margin-bottom:20px}
-.skill-top{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.1em;margin-bottom:8px}
-.skill-top span:first-child{color:var(--text)}.skill-top span:last-child{color:var(--cyan)}
-.bar{height:10px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
-.bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--pink),var(--cyan));
-  box-shadow:0 0 14px rgba(255,42,109,.6);width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
-
-/* agents */
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.ag .ic{font-size:26px;margin-bottom:12px}
-.ag h3{font-family:'Orbitron',sans-serif;font-size:16px;letter-spacing:.08em;margin-bottom:10px;color:#fff}
-.ag h3 i{font-style:normal;color:var(--pink)}
-.ag p{font-size:12.5px;color:var(--muted);line-height:1.7}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.chip{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(5,217,232,.4);color:var(--cyan);border-radius:100px}
-.chip.hot{border-color:rgba(255,42,109,.5);color:var(--pink)}
-
-/* projects */
-.gridp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-.proj .ptop{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.proj .ic{font-size:24px}
-.lang{font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:100px;border:1px solid rgba(165,94,234,.5);color:var(--purple)}
-.proj h3{font-family:'Orbitron',sans-serif;font-size:16px;letter-spacing:.06em;margin-bottom:8px}
-.proj h3 a{color:#fff;text-decoration:none;transition:.2s}
-.proj h3 a:hover{color:var(--cyan);text-shadow:0 0 12px var(--cyan)}
-.proj p{font-size:12.5px;color:var(--muted);line-height:1.7}
-.proj .go{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);text-decoration:none;border-bottom:1px dashed rgba(215,255,62,.4);padding-bottom:2px;transition:.2s}
-.proj .go:hover{text-shadow:0 0 10px var(--lime);border-color:var(--lime)}
-
-/* network */
-.net-intro{max-width:560px;margin:-20px auto 36px;text-align:center;color:var(--muted);font-size:13px;line-height:1.75}
-.net-status{display:inline-flex;align-items:center;gap:10px;margin-top:36px;padding:9px 20px;border:1px solid rgba(215,255,62,.35);border-radius:100px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);text-shadow:0 0 10px rgba(215,255,62,.4);background:rgba(215,255,62,.05)}
-.net-status .pdot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime);animation:pulse 1.4s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
-.netgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px}
-.net{--ac:#05d9e8;--d:0s;position:relative;display:flex;flex-direction:column;gap:5px;padding:18px 16px 15px;text-decoration:none;color:var(--text);border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden;opacity:0;transform:translateY(24px);transition:transform .22s,border-color .25s,box-shadow .25s,background .25s}
-.net.in{opacity:1;transform:none;animation:netUp .55s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:var(--d)}
-@keyframes netUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.net::before{content:"";position:absolute;inset:0;background:radial-gradient(140px 70px at 15% -5%,var(--ac),transparent 72%);opacity:0;transition:opacity .3s}
-.net:hover{transform:translateY(-3px);border-color:var(--ac);box-shadow:0 0 26px var(--ac)}
-.net:hover::before{opacity:.22}
-.net:hover .nname{color:var(--ac);text-shadow:0 0 14px var(--ac)}
-.net:hover .narw{opacity:1;transform:translate(0,0)}
-.nrow{position:relative;display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
-.nn{font-size:10px;letter-spacing:.18em;color:var(--muted);opacity:.75}
-.ndot{width:7px;height:7px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--ac);animation:pulse 1.8s ease-in-out infinite}
-.narw{position:absolute;right:0;top:0;font-size:13px;color:var(--ac);opacity:0;transform:translate(4px,-4px);transition:.25s}
-.nname{position:relative;font-family:'Orbitron',sans-serif;font-size:13.5px;letter-spacing:.05em;color:#fff;transition:.2s}
-.nsub{position:relative;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.net.me{background:linear-gradient(135deg,var(--lime) 0%,#8fd400 100%);border-color:var(--lime);box-shadow:0 0 24px rgba(215,255,62,.4)}
-.net.me::after{content:"";position:absolute;inset:0;border-radius:10px;border:1px solid rgba(215,255,62,.75);animation:mePulse 2.4s ease-in-out infinite;pointer-events:none}
-@keyframes mePulse{0%,100%{box-shadow:0 0 12px rgba(215,255,62,.35)}50%{box-shadow:0 0 32px rgba(215,255,62,.7)}}
-.net.me:hover{box-shadow:0 0 38px rgba(215,255,62,.65)}
-.net.me .nname,.net.me .nsub,.net.me .nn{color:#0b0220;text-shadow:none;opacity:1}
-.net.me .ndot{background:#0b0220;box-shadow:0 0 8px rgba(11,2,32,.8)}
-.net.me:hover .nname{color:#0b0220;text-shadow:none}
-.net.prism .ndot{background:conic-gradient(#ff2a6d,#ffd76a,#d7ff3e,#05d9e8,#a55eea,#ff2a6d);box-shadow:none}
-
-/* marquee */
-.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:10px 0}
-.mq{display:inline-block;white-space:nowrap;font-family:'Orbitron',sans-serif;font-weight:700;letter-spacing:.3em;font-size:15px;
-  color:transparent;-webkit-text-stroke:1px var(--purple);animation:mq 26s linear infinite}
-.mq span{color:var(--pink);-webkit-text-stroke:0;margin:0 22px}
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* contact */
-.contact{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.contact a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:.08em;border:1px solid rgba(255,255,255,.14);padding:12px 20px;border-radius:6px;transition:.25s}
-.contact a:hover{color:var(--lime);border-color:var(--lime);box-shadow:0 0 18px rgba(215,255,62,.25)}
-
-/* ---------- FOOTER ---------- */
-footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:44px 22px 34px;text-align:center;background:rgba(8,2,24,.85);backdrop-filter:blur(8px)}
-.fnet{font-family:'Orbitron',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em;margin-bottom:6px}
-.fnet span{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}
-.fcount{font-size:11px;color:var(--purple);letter-spacing:.22em;text-transform:uppercase;margin-bottom:22px}
-nav.links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:860px;margin:0 auto 24px}
-nav.links a{color:var(--text);text-decoration:none;border:1.5px solid var(--cyan);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;transition:all .18s;opacity:.85}
-nav.links a:hover{opacity:1;box-shadow:0 0 14px rgba(5,217,232,.5);transform:translateY(-1px)}
-nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);font-weight:700;opacity:1;box-shadow:0 0 18px rgba(215,255,62,.45)}
-.fcopy{font-size:11px;color:var(--muted);letter-spacing:.1em}
-.fcopy b{color:var(--pink)}
-
-/* ---------- CURSOR TRAIL ---------- */
-#trail{position:fixed;top:0;left:0;width:6px;height:6px;border-radius:50%;background:var(--cyan);
-  box-shadow:0 0 12px var(--cyan),0 0 30px rgba(5,217,232,.5);pointer-events:none;z-index:99;transition:transform .12s}
-#trail.big{transform:scale(3);background:var(--pink);box-shadow:0 0 16px var(--pink)}
-
-/* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
-.rv.in{opacity:1;transform:none}
-
-/* ---------- SCROLLBAR ---------- */
-::-webkit-scrollbar{width:10px}
-::-webkit-scrollbar-track{background:#070116}
-::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--pink),var(--cyan));border-radius:5px;box-shadow:0 0 10px rgba(255,42,109,.5)}
-::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--cyan),var(--pink))}
-
-/* ---------- SCROLL PROGRESS ---------- */
-#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:120;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--lime));box-shadow:0 0 12px rgba(5,217,232,.8)}
-
-/* ---------- BACK TO TOP ---------- */
-#totop{position:fixed;right:22px;bottom:22px;width:44px;height:44px;z-index:110;display:flex;align-items:center;justify-content:center;border:1px solid var(--cyan);color:var(--cyan);background:rgba(8,2,24,.85);border-radius:50%;font-size:15px;text-decoration:none;opacity:0;transform:translateY(14px);pointer-events:none;transition:.3s;backdrop-filter:blur(6px)}
-#totop.show{opacity:1;transform:none;pointer-events:auto}
-#totop:hover{box-shadow:0 0 20px rgba(5,217,232,.6);text-shadow:0 0 10px var(--cyan)}
-
-/* ---------- SIDE RAIL ---------- */
-#rail{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:14px}
-#rail a{color:var(--muted);text-decoration:none;font-size:10.5px;letter-spacing:.1em;font-family:'Orbitron',sans-serif;position:relative;transition:.2s;opacity:.55}
-#rail a::before{content:"";position:absolute;left:-10px;top:50%;transform:translateY(-50%);width:18px;height:1px;background:var(--cyan);opacity:0;transition:.2s}
-#rail a.on{color:var(--lime);opacity:1;text-shadow:0 0 10px rgba(215,255,62,.6)}
-#rail a.on::before{opacity:1;box-shadow:0 0 8px var(--cyan)}
-
-/* ---------- BOOT SCREEN ---------- */
-#boot{position:fixed;inset:0;z-index:200;background:#070116;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease}
-#boot.off{opacity:0;pointer-events:none}
-.boot-inner{text-align:center;width:300px}
-.boot-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:34px;letter-spacing:.16em;color:#fff;text-shadow:0 0 14px var(--cyan),0 0 40px rgba(5,217,232,.5);margin-bottom:26px}
-.boot-logo span{color:var(--pink);text-shadow:0 0 14px var(--pink)}
-.boot-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.07);border:1px solid rgba(5,217,232,.3);overflow:hidden}
-.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));box-shadow:0 0 12px rgba(5,217,232,.8)}
-.boot-txt{margin-top:14px;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-
-/* ---------- TYPING ---------- */
-.typed-line{margin-top:12px;min-height:22px;font-size:13.5px;color:var(--cyan);letter-spacing:.05em;text-shadow:0 0 10px rgba(5,217,232,.5)}
-.caret{display:inline-block;width:2px;height:15px;background:var(--cyan);margin-left:3px;vertical-align:-2px;animation:blink 1s steps(1) infinite;box-shadow:0 0 8px var(--cyan)}
-@keyframes blink{50%{opacity:0}}
-
-/* ---------- TERMINAL ---------- */
-.term{margin-top:22px;border:1px solid var(--line);border-radius:10px;background:rgba(3,1,12,.85);backdrop-filter:blur(8px);overflow:hidden;box-shadow:0 0 30px rgba(5,217,232,.08)}
-.term-head{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);background:rgba(12,4,36,.6)}
-.tdot{width:10px;height:10px;border-radius:50%}
-.tdot.r{background:#ff5f57}.tdot.y{background:#febc2e}.tdot.g{background:#28c840}
-.term-title{margin-left:8px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.term-body{padding:14px 16px;font-size:12px;line-height:1.85;min-height:120px}
-.term-body p{white-space:pre-wrap}
-.tk{color:var(--purple)}
-.tc{color:var(--cyan)}
-.term-body .ok{color:var(--lime)}
-
-/* active nav */
-.hnav a.on{color:var(--lime);text-shadow:0 0 10px var(--lime)}
-
-@media(max-width:640px){
-  .hdr{flex-direction:column;gap:12px}
-  .meta{position:static;transform:none;margin-top:18px;justify-content:center}
-  #rail{display:none}
-  #totop{right:14px;bottom:14px}
-}
-</style>
-</head>
-<body>
-<div id="boot"><div class="boot-inner">
-  <div class="boot-logo">M4ST<span>//SW</span></div>
-  <div class="boot-bar"><i></i></div>
-  <div class="boot-txt" id="bootTxt">BOOTING GRID</div>
-</div></div>
-<div id="progress"></div>
-<canvas id="stars"></canvas>
-<div class="sky"><div class="sunglow"></div><div class="sunwrap"><div class="sun"></div></div></div>
-<div class="floor"></div>
-<nav id="rail" aria-label="Sections">
-  <a href="#about">01</a><a href="#stack">02</a><a href="#agents">03</a><a href="#projects">04</a><a href="#network">05</a><a href="#contact">06</a>
-</nav>
-
-<div class="shell">
-  <header class="hdr rv">
-    <div class="logo">M4ST<span>//SW</span></div>
-    <nav class="hnav">
-      <a href="#about">About</a><a href="#stack">Stack</a><a href="#agents">Agents</a><a href="#projects">Projects</a><a href="#network">Network</a><a href="#contact">Contact</a>
-      <span class="clock" id="clock">IST --:--:--</span>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <p class="kick">Autonomous Agent Systems</p>
-    <h1>M4ST<span class="g">.</span></h1>
-    <p class="sub">Anuj builds <b>self-running AI agents</b>, memory pipelines and software that ships itself.
-    Every system is <b>zero-cost, always-on, endlessly iterating</b> — like this very grid beneath your feet.</p>
-    <p class="typed-line"><span id="typed"></span><span class="caret"></span></p>
-    <div class="cta">
-      <a class="btn" href="#projects">Open Source</a>
-      <a class="btn pink" href="#network">The Network</a>
-    </div>
-    <div class="meta">
-      <span>Built by <b>Anuj</b></span><span>Bareilly · India</span><span>Est. <b>2026</b></span>
-    </div>
-  </section>
-
-  <div class="marquee">
-    <div class="mq">AUTONOMOUS AGENTS<span>✦</span>NEURAL MEMORY<span>✦</span>RAG PIPELINES<span>✦</span>ZERO-COST INFRA<span>✦</span>ALWAYS-ON SYSTEMS<span>✦</span>REAL-TIME EVOLUTION<span>✦</span></div>
-  </div>
-
-  <section id="about">
-    <p class="sec-tag">// 01 — WHO</p>
-    <h2 class="sec">One dev. <em>Fourteen</em> interfaces. Infinite agents.</h2>
-    <div class="about-grid">
-      <div class="card rv"><div class="stat" data-count="14">0</div><div class="stat-lbl">Live Network Sites</div></div>
-      <div class="card rv"><div class="stat" data-count="12" data-suf="+">0</div><div class="stat-lbl">Autonomous Agents</div></div>
-      <div class="card rv"><div class="stat" data-count="0" data-pre="₹">₹0</div><div class="stat-lbl">Monthly Infra Cost</div></div>
-      <div class="card rv"><div class="stat" data-count="24" data-suf="/7">0</div><div class="stat-lbl">Always On</div></div>
-    </div>
-  </section>
-
-  <section id="stack">
-    <p class="sec-tag">// 02 — STACK</p>
-    <h2 class="sec">Powered by <em>the grid</em></h2>
-    <div class="card rv" style="padding:30px">
-      <div class="skill"><div class="skill-top"><span>Agent Orchestration</span><span>98%</span></div><div class="bar"><i data-w="98%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>LLM / RAG Pipelines</span><span>95%</span></div><div class="bar"><i data-w="95%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Vector Memory &amp; Embeddings</span><span>92%</span></div><div class="bar"><i data-w="92%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Zero-Cost Deploy (Vercel/GitHub)</span><span>100%</span></div><div class="bar"><i data-w="100%"></i></div></div>
-      <div class="skill"><div class="skill-top"><span>Python / JS / Automation</span><span>94%</span></div><div class="bar"><i data-w="94%"></i></div></div>
-    </div>
-  </section>
-
-  <section id="agents">
-    <p class="sec-tag">// 03 — AGENTS</p>
-    <h2 class="sec">Deployed &amp; <em>running now</em></h2>
-    <div class="grid3">
-      <div class="card ag rv"><div class="ic">🧠</div><h3>VECTOR <i>MEMORY</i></h3>
-        <p>Cross-session memory consolidation, relevance decay and context-aware injection — agents that genuinely remember.</p>
-        <div class="chips"><span class="chip">ChromaDB</span><span class="chip">Embeddings</span><span class="chip">RAG</span></div></div>
-      <div class="card ag rv"><div class="ic">🤖</div><h3>SMART <i>GITHUB</i></h3>
-        <p>AI-powered repo intelligence: auto-docs, PR analysis, issue triage and code-review agents, live on GitHub.com.</p>
-        <div class="chips"><span class="chip">GitHub API</span><span class="chip">MCP</span><span class="chip hot">Live</span></div></div>
-      <div class="card ag rv"><div class="ic">⚡</div><h3>PIPELINE <i>RUSH</i></h3>
-        <p>Self-healing automation chains that deploy, test and report while you sleep. Zero-cost, always-on.</p>
-        <div class="chips"><span class="chip">CI/CD</span><span class="chip">Webhooks</span><span class="chip">Schedulers</span></div></div>
-    </div>
-    <div class="term rv">
-      <div class="term-head"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="term-title">agent_status.log — live</span></div>
-      <div class="term-body" id="termBody"></div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <p class="sec-tag">// 04 — PROJECTS</p>
-    <h2 class="sec">Shipped &amp; <em>open source</em></h2>
-    <div class="gridp">
-      <div class="card proj rv"><div class="ptop"><span class="ic">🕸️</span><span class="lang">Python</span></div>
-        <h3><a href="https://github.com/m4stanuj/M4STCLAW" target="_blank" rel="noopener">M4STCLAW</a></h3>
-        <p>MCP-native autonomous AI mesh network with multi-provider routing, failover, memory and task automation.</p>
-        <div class="chips"><span class="chip">MCP</span><span class="chip">Mesh</span><span class="chip hot">Live</span></div>
-        <a class="go" href="https://github.com/m4stanuj/M4STCLAW" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🧩</span><span class="lang">Python</span></div>
-        <h3><a href="https://github.com/m4stanuj/MAST" target="_blank" rel="noopener">MAST</a></h3>
-        <p>Unified AI stack: MCP servers, provider routes, task chains, memory, scheduler &amp; local fallback. 21 MCP servers.</p>
-        <div class="chips"><span class="chip">21 MCP</span><span class="chip">Task Chains</span><span class="chip hot">Zero-cost</span></div>
-        <a class="go" href="https://github.com/m4stanuj/MAST" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🛠️</span><span class="lang">TypeScript</span></div>
-        <h3><a href="https://github.com/m4stanuj/openwork" target="_blank" rel="noopener">OpenWork</a></h3>
-        <p>Universal MCP workspace / control-plane for AI IDEs: portable configs, skills, agents, hot-reload and multi-tool automation.</p>
-        <div class="chips"><span class="chip">MCP</span><span class="chip">Hot-reload</span><span class="chip">Control-plane</span></div>
-        <a class="go" href="https://github.com/m4stanuj/openwork" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🐳</span><span class="lang">Docker</span></div>
-        <h3><a href="https://github.com/m4stanuj/wtf-m4st" target="_blank" rel="noopener">WTF M4ST</a></h3>
-        <p>Autonomous AI agent stack: 9 Docker services, 3 CrewAI crews, React dashboard, zero budget, consumer hardware.</p>
-        <div class="chips"><span class="chip">9 Services</span><span class="chip">CrewAI</span><span class="chip hot">Dashboard</span></div>
-        <a class="go" href="https://github.com/m4stanuj/wtf-m4st" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🛰️</span><span class="lang">Python</span></div>
-        <h3><a href="https://github.com/m4stanuj/cai-osint" target="_blank" rel="noopener">CAI-OSINT</a></h3>
-        <p>Autonomous AI OSINT / security analyst: Nmap, Shodan, Nuclei, CVE research and CEH-style workflows for authorized targets.</p>
-        <div class="chips"><span class="chip">Nmap</span><span class="chip">Shodan</span><span class="chip">Nuclei</span></div>
-        <a class="go" href="https://github.com/m4stanuj/cai-osint" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🔀</span><span class="lang">Python</span></div>
-        <h3><a href="https://github.com/m4stanuj/mast-llm-router" target="_blank" rel="noopener">Mast LLM Router</a></h3>
-        <p>Task-aware LLM router with fallback chains, free/local provider routing, semantic cache hooks and cost-aware selection.</p>
-        <div class="chips"><span class="chip">Fallback</span><span class="chip">Cost-aware</span><span class="chip">Routing</span></div>
-        <a class="go" href="https://github.com/m4stanuj/mast-llm-router" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">⚡</span><span class="lang">Python</span></div>
-        <h3><a href="https://github.com/m4stanuj/semantic-cache-engine" target="_blank" rel="noopener">Semantic Cache</a></h3>
-        <p>High-speed semantic cache engine for LLM reuse: embeddings, TTL policies and zero-cost prompt optimization.</p>
-        <div class="chips"><span class="chip">Embeddings</span><span class="chip">TTL</span><span class="chip hot">Zero-cost</span></div>
-        <a class="go" href="https://github.com/m4stanuj/semantic-cache-engine" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🎯</span><span class="lang">Python</span></div>
-        <h3><a href="https://github.com/m4stanuj/LeadSniper" target="_blank" rel="noopener">LeadSniper</a></h3>
-        <p>Public-signal lead discovery, scoring, enrichment notes and human-approved outreach drafts.</p>
-        <div class="chips"><span class="chip">Discovery</span><span class="chip">Scoring</span><span class="chip">Outreach</span></div>
-        <a class="go" href="https://github.com/m4stanuj/LeadSniper" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🤖</span><span class="lang">JavaScript</span></div>
-        <h3><a href="https://github.com/m4stanuj/smart-github-vercel-app" target="_blank" rel="noopener">Smart GitHub</a></h3>
-        <p>Smart GitHub + Vercel CI/CD integration demo with SEO optimizations — the agent that ships itself.</p>
-        <div class="chips"><span class="chip">CI/CD</span><span class="chip">Vercel</span><span class="chip hot">Live</span></div>
-        <a class="go" href="https://github.com/m4stanuj/smart-github-vercel-app" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🏴‍☠️</span><span class="lang">HTML</span></div>
-        <h3><a href="https://github.com/m4stanuj/onepiece-eastblue" target="_blank" rel="noopener">One Piece East Blue</a></h3>
-        <p>One Piece East Blue Bounty Archive — wanted posters site, built as a zero-cost static deploy.</p>
-        <div class="chips"><span class="chip">Static</span><span class="chip">Bounty</span><span class="chip">Archive</span></div>
-        <a class="go" href="https://github.com/m4stanuj/onepiece-eastblue" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🎨</span><span class="lang">HTML</span></div>
-        <h3><a href="https://github.com/m4stanuj/mast-designs" target="_blank" rel="noopener">Mast Designs</a></h3>
-        <p>MAST design variant portfolios — 11 different UI styles powering the m4stanuj.vercel.app ecosystem.</p>
-        <div class="chips"><span class="chip">11 Styles</span><span class="chip">Portfolio</span><span class="chip hot">Live</span></div>
-        <a class="go" href="https://github.com/m4stanuj/mast-designs" target="_blank" rel="noopener">View repo →</a></div>
-
-      <div class="card proj rv"><div class="ptop"><span class="ic">🔄</span><span class="lang">Python</span></div>
-        <h3><a href="https://github.com/m4stanuj/antigravity-account-switcher" target="_blank" rel="noopener">Antigravity Switcher</a></h3>
-        <p>Multi-account session manager for Antigravity IDE — one-click profile switching with rate-limit detection.</p>
-        <div class="chips"><span class="chip">Profiles</span><span class="chip">Rate-limit</span><span class="chip">One-click</span></div>
-        <a class="go" href="https://github.com/m4stanuj/antigravity-account-switcher" target="_blank" rel="noopener">View repo →</a></div>
-    </div>
-  </section>
-
-  <section id="network">
-    <p class="sec-tag">// 05 — NETWORK</p>
-    <h2 class="sec">Fourteen <em>live</em> interfaces</h2>
-    <p class="net-intro">One dev. One grid. Fourteen entry points — every variant is a different door into the same autonomous stack. All live, all zero-cost.</p>
-    <div class="netgrid">
-      <a class="net rv" style="--ac:#05d9e8;--d:.00s" href="https://m4stanuj.vercel.app">
-        <span class="nrow"><span class="nn">01</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">m4stanuj</span><span class="nsub">Main portfolio</span>
-      </a>
-      <a class="net rv" style="--ac:#a55eea;--d:.03s" href="https://mast-anuj.vercel.app">
-        <span class="nrow"><span class="nn">02</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mast-anuj</span><span class="nsub">Variant</span>
-      </a>
-      <a class="net rv" style="--ac:#ff2a6d;--d:.06s" href="https://mast-anuj-site.vercel.app">
-        <span class="nrow"><span class="nn">03</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mast-anuj-site</span><span class="nsub">Variant</span>
-      </a>
-      <a class="net rv me" style="--ac:#d7ff3e;--d:.09s" href="https://m4st.vercel.app">
-        <span class="nrow"><span class="nn">04</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">m4st</span><span class="nsub">You are here</span>
-      </a>
-      <a class="net rv" style="--ac:#ffd76a;--d:.12s" href="https://mastanuj-royal.vercel.app">
-        <span class="nrow"><span class="nn">05</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-royal</span><span class="nsub">Royal</span>
-      </a>
-      <a class="net rv" style="--ac:#e0e0e0;--d:.15s" href="https://mastanuj-elite.vercel.app">
-        <span class="nrow"><span class="nn">06</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-elite</span><span class="nsub">Elite</span>
-      </a>
-      <a class="net rv prism" style="--ac:#ff4fd8;--d:.18s" href="https://mastanuj-prism.vercel.app">
-        <span class="nrow"><span class="nn">07</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-prism</span><span class="nsub">Prism</span>
-      </a>
-      <a class="net rv" style="--ac:#00ff41;--d:.21s" href="https://mastanuj-pixel.vercel.app">
-        <span class="nrow"><span class="nn">08</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-pixel</span><span class="nsub">Pixel</span>
-      </a>
-      <a class="net rv" style="--ac:#4d9fff;--d:.24s" href="https://mastanuj-v1.vercel.app">
-        <span class="nrow"><span class="nn">09</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-v1</span><span class="nsub">V1</span>
-      </a>
-      <a class="net rv" style="--ac:#ff9e2c;--d:.27s" href="https://mastanuj-retro.vercel.app">
-        <span class="nrow"><span class="nn">10</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-retro</span><span class="nsub">Retro</span>
-      </a>
-      <a class="net rv" style="--ac:#12e6c8;--d:.30s" href="https://mastanuj-command.vercel.app">
-        <span class="nrow"><span class="nn">11</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-command</span><span class="nsub">Command</span>
-      </a>
-      <a class="net rv" style="--ac:#ff5252;--d:.33s" href="https://mastanuj-dossier.vercel.app">
-        <span class="nrow"><span class="nn">12</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-dossier</span><span class="nsub">Dossier</span>
-      </a>
-      <a class="net rv" style="--ac:#ffe600;--d:.36s" href="https://mastanuj-comic.vercel.app">
-        <span class="nrow"><span class="nn">13</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-comic</span><span class="nsub">Comic</span>
-      </a>
-      <a class="net rv" style="--ac:#7f8fa6;--d:.39s" href="https://mastanuj-core.vercel.app">
-        <span class="nrow"><span class="nn">14</span><span class="ndot"></span><span class="narw">↗</span></span>
-        <span class="nname">mastanuj-core</span><span class="nsub">Core</span>
-      </a>
-    </div>
-    <div class="net-status"><span class="pdot"></span>14/14 interfaces online · zero-cost · always-on</div>
-  </section>
-
-  <section id="contact">
-    <p class="sec-tag">// 06 — CONNECT</p>
-    <h2 class="sec">Enter the <em>grid</em></h2>
-    <div class="contact">
-      <a href="mailto:m4stanuj@gmail.com">✉ m4stanuj@gmail.com</a>
-      <a href="https://github.com/m4stanuj" target="_blank" rel="noopener">⌥ github.com/m4stanuj</a>
-      <a href="https://m4stanuj.vercel.app/" target="_blank" rel="noopener">✶ Main Portfolio</a>
-    </div>
-  </section>
-</div>
-
-<footer>
-  <p class="fnet">M4ST <span>NETWORK</span></p>
-  <p class="fcount">14 autonomous agent interfaces</p>
-  <nav class="links" aria-label="M4ST variants">
-    <a href="https://m4stanuj.vercel.app">m4stanuj</a>
-    <a href="https://mast-anuj.vercel.app">mast-anuj</a>
-    <a href="https://mast-anuj-site.vercel.app">mast-anuj-site</a>
-    <a href="https://m4st.vercel.app" class="me">m4st</a>
-    <a href="https://mastanuj-royal.vercel.app">mastanuj-royal</a>
-    <a href="https://mastanuj-elite.vercel.app">mastanuj-elite</a>
-    <a href="https://mastanuj-prism.vercel.app">mastanuj-prism</a>
-    <a href="https://mastanuj-pixel.vercel.app">mastanuj-pixel</a>
-    <a href="https://mastanuj-v1.vercel.app">mastanuj-v1</a>
-    <a href="https://mastanuj-retro.vercel.app">mastanuj-retro</a>
-    <a href="https://mastanuj-command.vercel.app">mastanuj-command</a>
-    <a href="https://mastanuj-dossier.vercel.app">mastanuj-dossier</a>
-    <a href="https://mastanuj-comic.vercel.app">mastanuj-comic</a>
-    <a href="https://mastanuj-core.vercel.app">mastanuj-core</a>
-  </nav>
-  <p class="fcopy">© 2026 M4ST — built by <b>Anuj</b>, Bareilly, India. Zero-cost, always.</p>
-</footer>
-
-<a href="#" id="totop" aria-label="Back to top">▲</a>
-<div id="trail"></div>
-
-<script>
-/* STARFIELD + SHOOTING STARS */
-(function(){
-  const cv=document.getElementById('stars'),ctx=cv.getContext('2d');let W,H,stars=[],shoot=[];
-  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;initStars()}
-  function initStars(){stars=[];const n=Math.min(220,Math.floor(W*H/6000));
-    for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H*.72,r:Math.random()*1.4+.2,a:Math.random()*.6+.4,tw:Math.random()*.05+.01,p:Math.random()*Math.PI*2});}
-  function spawnShoot(){const fromL=Math.random()<.5;
-    shoot.push({x:fromL?Math.random()*W*.3:W-Math.random()*W*.3,y:Math.random()*H*.35,vx:(fromL?1:-1)*(6+Math.random()*5),vy:2.2+Math.random()*1.5,life:1})}
-  function tick(){
-    ctx.clearRect(0,0,W,H);
-    for(const s of stars){s.p+=s.tw;s.a+=Math.sin(s.p)*.15;
-      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(232,246,255,'+Math.max(.1,Math.min(1,s.a))+')';ctx.fill();}
-    if(Math.random()<.012)spawnShoot();
-    shoot=shoot.filter(s=>s.life>0);
-    for(const s of shoot){s.x+=s.vx;s.y+=s.vy;s.life-=.012;
-      const g=ctx.createLinearGradient(s.x,s.y,s.x-s.vx*10,s.y-s.vy*10);
-      g.addColorStop(0,'rgba(215,255,62,'+s.life+')');g.addColorStop(1,'rgba(215,255,62,0)');
-      ctx.strokeStyle=g;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-s.vx*12,s.y-s.vy*12);ctx.stroke();}
-    requestAnimationFrame(tick)}
-  window.addEventListener('resize',resize);resize();tick();
-})();
-
-/* SUN PARALLAX ON MOUSE */
-(function(){const sun=document.querySelector('.sunwrap');
-  window.addEventListener('mousemove',e=>{const dx=(e.clientX/innerWidth-.5)*18,dy=(e.clientY/innerHeight-.5)*12;
-    sun.style.transform='translateX(calc(-50% + '+dx+'px)) translateY('+dy+'px)';});})();
-
-/* SKILL BARS */
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
-  const bar=e.target;bar.style.width=bar.dataset.w;io.unobserve(bar)}})},{threshold:.4});
-document.querySelectorAll('.bar i').forEach(b=>io.observe(b));
-
-/* REVEAL */
-const rv=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}})},{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
-
-/* CURSOR TRAIL */
-(function(){const t=document.getElementById('trail');let x=0,y=0,tx=0,ty=0;
-  window.addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY});
-  document.querySelectorAll('a,.card,.btn').forEach(el=>{el.addEventListener('mouseenter',()=>t.classList.add('big'));
-    el.addEventListener('mouseleave',()=>t.classList.remove('big'))});
-  (function loop(){tx+=(x-tx)*.16;ty+=(y-ty)*.16;t.style.left=tx+'px';t.style.top=ty+'px';requestAnimationFrame(loop)})();})();
-
-/* LIVE IST CLOCK */
-(function(){const el=document.getElementById('clock');
-  function pad(n){return String(n).padStart(2,'0')}
-  function tick(){const now=new Date();
-    const ist=new Date(now.getTime()+((5*60+30)*60*1000));
-    el.textContent='IST '+pad(ist.getUTCHours())+':'+pad(ist.getUTCMinutes())+':'+pad(ist.getUTCSeconds());}
-  tick();setInterval(tick,1000);})();
-
-/* BOOT SEQUENCE */
-(function(){const boot=document.getElementById('boot'),bar=boot.querySelector('.boot-bar i'),txt=document.getElementById('bootTxt');
-const msgs=['BOOTING GRID','MOUNTING NEURAL MEMORY','SPAWNING AGENTS','SYNCING 14 INTERFACES','SYSTEM ONLINE'];
-let p=0;document.body.style.overflow='hidden';
-const iv=setInterval(()=>{p+=Math.random()*16+9;
-  if(p>=100){p=100;clearInterval(iv);txt.textContent='SYSTEM ONLINE';bar.style.width='100%';
-    setTimeout(()=>{boot.classList.add('off');document.body.style.overflow='';setTimeout(()=>boot.remove(),600)},380);}
-  else{bar.style.width=p+'%';txt.textContent=msgs[Math.min(msgs.length-1,Math.floor(p/100*msgs.length))];}},120);
-boot.addEventListener('click',()=>{clearInterval(iv);bar.style.width='100%';txt.textContent='SYSTEM ONLINE';
-  boot.classList.add('off');document.body.style.overflow='';setTimeout(()=>boot.remove(),600);});})();
-
-/* SCROLL PROGRESS + BACK TO TOP */
-(function(){const pr=document.getElementById('progress'),tt=document.getElementById('totop');
-function upd(){const h=document.documentElement,s=Math.min(100,h.scrollTop/(h.scrollHeight-h.clientHeight)*100||0);
-  pr.style.width=s+'%';tt.classList.toggle('show',h.scrollTop>600)}
-addEventListener('scroll',upd,{passive:true});upd();
-tt.addEventListener('click',e=>{e.preventDefault();scrollTo({top:0,behavior:'smooth'})});})();
-
-/* SCROLLSPY */
-(function(){const map={};document.querySelectorAll('section[id]').forEach(s=>{map[s.id]=s});
-const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
-  document.querySelectorAll('.hnav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));
-  document.querySelectorAll('#rail a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-40% 0px -55% 0px'});
-Object.values(map).forEach(s=>spy.observe(s));})();
-
-/* HERO TYPING */
-(function(){const el=document.getElementById('typed');if(!el)return;
-const words=['self-running AI agents','neural memory pipelines','RAG vector systems','software that ships itself','zero-cost autonomous stacks'];
-let wi=0,ci=0,del=false;
-(function loop(){const w=words[wi];el.textContent=w.slice(0,ci);
-  if(!del){ci++;if(ci>w.length){del=true;setTimeout(loop,1400);return}}
-  else{ci--;if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(loop,300);return}}
-  setTimeout(loop,del?38:78);})();})();
-
-/* COUNT-UP STATS */
-(function(){document.querySelectorAll('.stat').forEach(s=>{
-  const pre=s.dataset.pre||'',suf=s.dataset.suf||'',target=parseInt(s.dataset.count,10);
-  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
-    obs.unobserve(s);const t0=performance.now(),dur=1200;
-    (function step(now){const k=Math.min(1,(now-t0)/dur),v=Math.round(target*(1-Math.pow(1-k,3)));
-      s.textContent=pre+v+suf;if(k<1)requestAnimationFrame(step)})(t0);}})},{threshold:.5});
-  obs.observe(s);});})();
-
-/* TERMINAL LOG */
-(function(){const tb=document.getElementById('termBody');if(!tb)return;
-const lines=['MESH → M4STCLAW routing: online','MEM → vector memory mounted · ChromaLite','AGT → 3 agents spawned · ready','NET → 14/14 interfaces responding','DEP → zero-cost deploy: OK','COST → ₹0.00 this month','HINT → press [M] to flash the grid'];
-let li=0;
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){obs.unobserve(tb);typeLine()}})},{threshold:.3});obs.observe(tb);
-function now(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')}
-function typeLine(){if(li>=lines.length){li=0;tb.innerHTML=''}
-  const line=lines[li];let ci=0;const p=document.createElement('p');tb.appendChild(p);
-  (function type(){if(ci<=line.length){
-    const seg=line.slice(0,ci),parts=seg.split(' → ');
-    p.innerHTML='<span class="tk">['+now()+']</span> '+(parts.length>1?'<span class="tc">'+parts[0]+'</span> → '+parts.slice(1).join(' → '):seg);
-    ci++;setTimeout(type,14);}else{li++;setTimeout(typeLine,300)}})();}})();
-
-/* EASTER EGG: press M to flash the grid */
-document.addEventListener('keydown',e=>{if((e.key==='m'||e.key==='M')){
-  const f=document.querySelector('.floor');f.style.filter='brightness(3)';
-  setTimeout(()=>f.style.filter='',260);}});
-</script>
-</body>
-</html>
