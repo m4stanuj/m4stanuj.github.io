@@ -370,9 +370,13 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 /* reveal */
 
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.motion-enhanced .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
 
-.rv.in{opacity:1;transform:none}
+.motion-enhanced .rv.in,.motion-enhanced .rv:focus-within{opacity:1;transform:none}
+
+:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.skip-link{position:fixed;left:12px;top:12px;z-index:10000;padding:10px 14px;background:#0b0718;color:#fff;transform:translateY(calc(-100% - 24px))}
+.skip-link:focus{transform:none}
 
 
 
@@ -499,7 +503,7 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
   html{scroll-behavior:auto}
   *, *::before, *::after{animation:none!important;transition:none!important}
   #boot, #stars, #trail, .caret{display:none}
-  .rv{opacity:1;transform:none}
+  .motion-enhanced .rv{opacity:1;transform:none}
   .mq{white-space:normal}
 }
 
@@ -508,6 +512,8 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 </head>
 
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <div id="boot" hidden aria-hidden="true"><div class="boot-inner">
 
@@ -529,7 +535,7 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 <nav id="rail" aria-label="Sections">
 
-  <a href="#about">01</a><a href="#stack">02</a><a href="#agents">03</a><a href="#projects">04</a><a href="#contact">05</a>
+  <a href="#about" aria-label="About">01</a><a href="#stack" aria-label="Stack">02</a><a href="#agents" aria-label="Agents">03</a><a href="#projects" aria-label="Projects">04</a><a href="#contact" aria-label="Contact">05</a>
 
 </nav>
 
@@ -537,11 +543,11 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 <div class="shell">
 
-  <header class="hdr rv">
+  <header class="hdr rv" id="page-top" tabindex="-1">
 
     <div class="logo">M4ST<span>//SW</span></div>
 
-    <nav class="hnav">
+    <nav class="hnav" aria-label="Main navigation">
 
       <a href="#about">About</a><a href="#stack">Stack</a><a href="#agents">Agents</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
 
@@ -553,6 +559,7 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 
 
+  <main id="main-content" tabindex="-1">
   <section class="hero">
 
     <p class="kick">Autonomous Agent Systems</p>
@@ -853,9 +860,8 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
   </section>
 
+  </main>
 </div>
-
-
 
 <footer>
 
@@ -901,7 +907,7 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 
 
-<a href="#" id="totop" aria-label="Back to top">&#9650;</a>
+<a href="#page-top" id="totop" aria-label="Back to top" tabindex="-1">&#9650;</a>
 
 <div id="trail"></div>
 
@@ -985,7 +991,10 @@ document.querySelectorAll('.bar i').forEach(bar=>{
 
 const rv=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}})},{threshold:.1});
 
-if(!reduceMotion)document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
+if(!reduceMotion){
+  document.documentElement.classList.add('motion-enhanced');
+  document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
+}
 
 
 
@@ -1047,11 +1056,12 @@ boot.addEventListener('click',()=>{clearInterval(iv);bar.style.width='100%';txt.
 
 function upd(){const h=document.documentElement,s=Math.min(100,h.scrollTop/(h.scrollHeight-h.clientHeight)*100||0);
 
-  pr.style.width=s+'%';tt.classList.toggle('show',h.scrollTop>600)}
+  const show=h.scrollTop>600;
+  pr.style.width=s+'%';tt.classList.toggle('show',show);tt.tabIndex=show?0:-1}
 
 addEventListener('scroll',upd,{passive:true});upd();
 
-tt.addEventListener('click',e=>{e.preventDefault();scrollTo({top:0})});})();
+tt.addEventListener('click',()=>{document.getElementById('page-top').focus({preventScroll:true})});})();
 
 
 
@@ -1061,9 +1071,12 @@ tt.addEventListener('click',e=>{e.preventDefault();scrollTo({top:0})});})();
 
 const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
 
-  document.querySelectorAll('.hnav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));
-
-  document.querySelectorAll('#rail a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-40% 0px -55% 0px'});
+  document.querySelectorAll('.hnav a, #rail a').forEach(a=>{
+    const active=a.getAttribute('href')==='#'+e.target.id;
+    a.classList.toggle('on',active);
+    if(active)a.setAttribute('aria-current','location');
+    else a.removeAttribute('aria-current');
+  });}})},{rootMargin:'-40% 0px -55% 0px'});
 
 Object.values(map).forEach(s=>spy.observe(s));})();
 
