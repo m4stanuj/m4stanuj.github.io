@@ -422,7 +422,12 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 #boot{position:fixed;inset:0;z-index:200;background:#070116;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease}
 
+#boot[hidden]{display:none}
 #boot.off{opacity:0;pointer-events:none}
+
+@media (prefers-reduced-motion:no-preference){
+  body.booting{overflow:hidden}
+}
 
 .boot-inner{text-align:center;width:300px}
 
@@ -490,13 +495,21 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 }
 
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *, *::before, *::after{animation:none!important;transition:none!important}
+  #boot, #stars, #trail, .caret{display:none}
+  .rv{opacity:1;transform:none}
+  .mq{white-space:normal}
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div id="boot"><div class="boot-inner">
+<div id="boot" hidden aria-hidden="true"><div class="boot-inner">
 
   <div class="boot-logo">M4ST<span>//SW</span></div>
 
@@ -550,7 +563,7 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
     Every system is <b>zero-cost, always-on, endlessly iterating</b> &mdash; like this very grid beneath your feet.</p>
 
-    <p class="typed-line"><span id="typed"></span><span class="caret"></span></p>
+    <p class="typed-line"><span id="typed">self-running AI agents</span><span class="caret"></span></p>
 
     <div class="cta">
 
@@ -896,9 +909,12 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 <script>
 
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* STARFIELD + SHOOTING STARS */
 
 (function(){
+  if (reduceMotion) return;
 
   const cv=document.getElementById('stars'),ctx=cv.getContext('2d');let W,H,stars=[],shoot=[];
 
@@ -944,7 +960,7 @@ nav.links a.me{color:#0b0220;background:var(--lime);border-color:var(--lime);fon
 
 /* SUN PARALLAX ON MOUSE */
 
-(function(){const sun=document.querySelector('.sunwrap');
+(function(){if(reduceMotion)return;const sun=document.querySelector('.sunwrap');
 
   window.addEventListener('mousemove',e=>{const dx=(e.clientX/innerWidth-.5)*18,dy=(e.clientY/innerHeight-.5)*12;
 
@@ -958,7 +974,10 @@ const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
 
   const bar=e.target;bar.style.width=bar.dataset.w;io.unobserve(bar)}})},{threshold:.4});
 
-document.querySelectorAll('.bar i').forEach(b=>io.observe(b));
+document.querySelectorAll('.bar i').forEach(bar=>{
+  if(reduceMotion)bar.style.width=bar.dataset.w;
+  else io.observe(bar);
+});
 
 
 
@@ -966,13 +985,13 @@ document.querySelectorAll('.bar i').forEach(b=>io.observe(b));
 
 const rv=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}})},{threshold:.1});
 
-document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
+if(!reduceMotion)document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
 
 
 
 /* CURSOR TRAIL */
 
-(function(){const t=document.getElementById('trail');let x=0,y=0,tx=0,ty=0;
+(function(){if(reduceMotion)return;const t=document.getElementById('trail');let x=0,y=0,tx=0,ty=0;
 
   window.addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY});
 
@@ -1002,23 +1021,23 @@ document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
 
 /* BOOT SEQUENCE */
 
-(function(){const boot=document.getElementById('boot'),bar=boot.querySelector('.boot-bar i'),txt=document.getElementById('bootTxt');
+(function(){if(reduceMotion)return;const boot=document.getElementById('boot'),bar=boot.querySelector('.boot-bar i'),txt=document.getElementById('bootTxt');
 
 const msgs=['BOOTING GRID','MOUNTING NEURAL MEMORY','SPAWNING AGENTS','SYNCING 14 INTERFACES','SYSTEM ONLINE'];
 
-let p=0;document.body.style.overflow='hidden';
+let p=0;boot.hidden=false;document.body.classList.add('booting');
 
 const iv=setInterval(()=>{p+=Math.random()*16+9;
 
   if(p>=100){p=100;clearInterval(iv);txt.textContent='SYSTEM ONLINE';bar.style.width='100%';
 
-    setTimeout(()=>{boot.classList.add('off');document.body.style.overflow='';setTimeout(()=>boot.remove(),600)},380);}
+    setTimeout(()=>{boot.classList.add('off');document.body.classList.remove('booting');setTimeout(()=>boot.remove(),600)},380);}
 
   else{bar.style.width=p+'%';txt.textContent=msgs[Math.min(msgs.length-1,Math.floor(p/100*msgs.length))];}},120);
 
 boot.addEventListener('click',()=>{clearInterval(iv);bar.style.width='100%';txt.textContent='SYSTEM ONLINE';
 
-  boot.classList.add('off');document.body.style.overflow='';setTimeout(()=>boot.remove(),600);});})();
+  boot.classList.add('off');document.body.classList.remove('booting');setTimeout(()=>boot.remove(),600);});})();
 
 
 
@@ -1032,7 +1051,7 @@ function upd(){const h=document.documentElement,s=Math.min(100,h.scrollTop/(h.sc
 
 addEventListener('scroll',upd,{passive:true});upd();
 
-tt.addEventListener('click',e=>{e.preventDefault();scrollTo({top:0,behavior:'smooth'})});})();
+tt.addEventListener('click',e=>{e.preventDefault();scrollTo({top:0})});})();
 
 
 
@@ -1052,7 +1071,7 @@ Object.values(map).forEach(s=>spy.observe(s));})();
 
 /* HERO TYPING */
 
-(function(){const el=document.getElementById('typed');if(!el)return;
+(function(){const el=document.getElementById('typed');if(!el||reduceMotion)return;
 
 const words=['self-running AI agents','neural memory pipelines','RAG vector systems','software that ships itself','zero-cost autonomous stacks'];
 
@@ -1074,6 +1093,8 @@ let wi=0,ci=0,del=false;
 
   const pre=s.dataset.pre||'',suf=s.dataset.suf||'',target=parseInt(s.dataset.count,10);
 
+  if(reduceMotion){s.textContent=pre+target+suf;return;}
+
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
 
     obs.unobserve(s);const t0=performance.now(),dur=1200;
@@ -1090,13 +1111,24 @@ let wi=0,ci=0,del=false;
 
 (function(){const tb=document.getElementById('termBody');if(!tb)return;
 
-const lines=['MESH \u2192 M4STCLAW routing: online','MEM \u2192 vector memory mounted \u00B7 ChromaLite','AGT \u2192 3 agents spawned \u00B7 ready','NET \u2192 14/14 interfaces responding','DEP \u2192 zero-cost deploy: OK','COST \u2192 \u20B90.00 this month','HINT \u2192 press [M] to flash the grid'];
+const lines=['MESH \u2192 M4STCLAW routing: online','MEM \u2192 vector memory mounted \u00B7 ChromaLite','AGT \u2192 3 agents spawned \u00B7 ready','NET \u2192 14/14 interfaces responding','DEP \u2192 zero-cost deploy: OK','COST \u2192 \u20B90.00 this month'];
+if(!reduceMotion)lines.push('HINT \u2192 press [M] to flash the grid');
+
+function now(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')}
+
+function renderLine(p,text){
+  const parts=text.split(' \u2192 ');
+  p.innerHTML='<span class="tk">['+now()+']</span> '+(parts.length>1?'<span class="tc">'+parts[0]+'</span> \u2192 '+parts.slice(1).join(' \u2192 '):text);
+}
+
+if(reduceMotion){
+  lines.forEach(line=>renderLine(tb.appendChild(document.createElement('p')),line));
+  return;
+}
 
 let li=0;
 
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){obs.unobserve(tb);typeLine()}})},{threshold:.3});obs.observe(tb);
-
-function now(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')}
 
 function typeLine(){if(li>=lines.length){li=0;tb.innerHTML=''}
 
@@ -1104,9 +1136,7 @@ function typeLine(){if(li>=lines.length){li=0;tb.innerHTML=''}
 
   (function type(){if(ci<=line.length){
 
-    const seg=line.slice(0,ci),parts=seg.split(' \u2192 ');
-
-    p.innerHTML='<span class="tk">['+now()+']</span> '+(parts.length>1?'<span class="tc">'+parts[0]+'</span> \u2192 '+parts.slice(1).join(' \u2192 '):seg);
+    renderLine(p,line.slice(0,ci));
 
     ci++;setTimeout(type,14);}else{li++;setTimeout(typeLine,300)}})();}})();
 
@@ -1114,7 +1144,7 @@ function typeLine(){if(li>=lines.length){li=0;tb.innerHTML=''}
 
 /* EASTER EGG: press M to flash the grid */
 
-document.addEventListener('keydown',e=>{if((e.key==='m'||e.key==='M')){
+document.addEventListener('keydown',e=>{if(!reduceMotion&&(e.key==='m'||e.key==='M')){
 
   const f=document.querySelector('.floor');f.style.filter='brightness(3)';
 
