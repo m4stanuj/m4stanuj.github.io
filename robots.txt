@@ -1,4 +1,16 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://m4st.vercel.app/sitemap.xml
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+Sitemap: https://m4stanujgithubio.vercel.app/sitemap.xml

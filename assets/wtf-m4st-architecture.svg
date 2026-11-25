@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faf9f6"/>
+      <stop offset="100%" stop-color="#f3efe8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" rx="16" fill="url(#bgGrad2)"/>
+  <rect x="24" y="24" width="752" height="402" rx="12" fill="none" stroke="#e2ddd5" stroke-width="1.5" stroke-dasharray="4 4"/>
+  
+  <text x="48" y="64" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#9a8d7c" letter-spacing="0.1em">HARDWARE &amp; SYSTEM OPTIMIZATION ENGINE</text>
+  <text x="48" y="92" font-family="'Newsreader', Georgia, serif" font-size="24" font-weight="600" fill="#1c1917">wtf-m4st Hardware Tuning &amp; Benchmark Proof</text>
+  
+  <!-- Metric Box 1 -->
+  <g transform="translate(48, 120)">
+    <rect width="216" height="120" rx="10" fill="#ffffff" stroke="#e7e2d9" stroke-width="1.5"/>
+    <text x="20" y="34" font-family="sans-serif" font-size="11" font-weight="700" fill="#78716c">KEYBOARD POLLING LATENCY</text>
+    <text x="20" y="74" font-family="'Newsreader', serif" font-size="34" font-weight="700" fill="#c2410c">15 ms</text>
+    <text x="20" y="100" font-family="sans-serif" font-size="11" fill="#16a34a">↑ 67 chars/sec (FilterKeys Mod)</text>
+  </g>
+  
+  <!-- Metric Box 2 -->
+  <g transform="translate(292, 120)">
+    <rect width="216" height="120" rx="10" fill="#ffffff" stroke="#e7e2d9" stroke-width="1.5"/>
+    <text x="20" y="34" font-family="sans-serif" font-size="11" font-weight="700" fill="#78716c">MOUSE CURVE LINEARITY</text>
+    <text x="20" y="74" font-family="'Newsreader', serif" font-size="34" font-weight="700" fill="#1c1917">1 : 1</text>
+    <text x="20" y="100" font-family="sans-serif" font-size="11" fill="#16a34a">MarkC Raw Input (0 accel drift)</text>
+  </g>
+  
+  <!-- Metric Box 3 -->
+  <g transform="translate(536, 120)">
+    <rect width="216" height="120" rx="10" fill="#ffffff" stroke="#e7e2d9" stroke-width="1.5"/>
+    <text x="20" y="34" font-family="sans-serif" font-size="11" font-weight="700" fill="#78716c">FILE RECON SPEED (NVME)</text>
+    <text x="20" y="74" font-family="'Newsreader', serif" font-size="34" font-weight="700" fill="#c2410c">8.0x</text>
+    <text x="20" y="100" font-family="sans-serif" font-size="11" fill="#16a34a">Faster than PowerShell Select-String</text>
+  </g>
+  
+  <!-- Architecture Detail -->
+  <g transform="translate(48, 264)">
+    <rect width="704" height="136" rx="10" fill="#ffffff" stroke="#e7e2d9" stroke-width="1.5"/>
+    <text x="24" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700" fill="#1c1917">Hardware Constraints Respected</text>
+    <text x="24" y="58" font-family="sans-serif" font-size="12" fill="#57534e">
+      • AMD Ryzen 7 5800H (8C/16T Cezanne) + AMD Radeon RX 6500M 4GB (Navi 24 architecture).
+    </text>
+    <text x="24" y="80" font-family="sans-serif" font-size="12" fill="#57534e">
+      • Zero VCN Block on Navi 24: Headless video render permanently routed via CPU libx264 -preset fast.
+    </text>
+    <text x="24" y="102" font-family="sans-serif" font-size="12" fill="#57534e">
+      • Windows Standby List Protected: Zero EmptyWorkingSet thrashing; microsecond scheduler preservation.
+    </text>
+  </g>
+</svg>
